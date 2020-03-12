@@ -82,7 +82,8 @@ public class CoordinatorLogin extends JFrame {
 							CoordinatorMenu coordinator = new CoordinatorMenu();
 							coordinator.setVisible(true);
 							contentPane.setVisible(false);
-							JOptionPane.showMessageDialog(null, "login successful");
+							setVisible(false);
+						    JOptionPane.showMessageDialog(null, "login successful");
 						}
 						else if((password.getText().equals("") || username.getText().equals(""))) {
 							JOptionPane.showMessageDialog(null, "Please enter your username and password");
