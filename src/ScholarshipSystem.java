@@ -51,6 +51,7 @@ public class ScholarshipSystem extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		setResizable(false); 
+		setTitle("University of Saskatchewan");
 		
 		
 		JLabel welcomeLabel = new JLabel("Scholarship updater!");

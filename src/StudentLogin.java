@@ -47,6 +47,8 @@ public class StudentLogin extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		setResizable(false);
+		setTitle("University of Saskatchewan");
+		setLocationRelativeTo(null);
 		
 		JLabel usernameLabel = new JLabel("Username:");
 		usernameLabel.setBounds(33, 71, 73, 16);
