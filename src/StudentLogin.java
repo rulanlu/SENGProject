@@ -1,6 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
+import java.util.Scanner;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
@@ -11,6 +11,8 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.io.File;
+import java.io.FileNotFoundException;
 
 public class StudentLogin extends JFrame {
 
@@ -67,13 +69,27 @@ public class StudentLogin extends JFrame {
 		JButton loginButton = new JButton("Login");
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if (password.getText().equals("") || username.getText().equals("")) {
-					JOptionPane.showMessageDialog(null, "Please enter your username and password");
-				} else {
-					StudentMenu student = new StudentMenu();
-					student.setVisible(true);
-					contentPane.setVisible(false);
+				try {
+					Scanner in = new Scanner(new File("src/student.txt"));
+					while (in.hasNextLine()) {
+						String s = in.nextLine();
+						String[] sArray = s.split(",");
+						if(username.getText().equals(sArray[0]) && password.getText().equals(sArray[1])) {
+							StudentMenu student = new StudentMenu();
+							student.setVisible(true);
+							contentPane.setVisible(false);
+							JOptionPane.showMessageDialog(null, "login successful");
+						}
+						else if((password.getText().equals("") || username.getText().equals(""))) {
+							JOptionPane.showMessageDialog(null, "Please enter your username and password");
+						}
+					}
+					in.close();
+				} catch (FileNotFoundException m) {
+				
+					JOptionPane.showMessageDialog(null,"User Database Not Found", "Error", JOptionPane.ERROR_MESSAGE);
 				}
+				
 			}
 		});
 		loginButton.setBounds(160, 215, 117, 29);
