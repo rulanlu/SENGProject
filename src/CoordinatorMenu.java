@@ -33,7 +33,7 @@ public class CoordinatorMenu extends JFrame {
 	 */
 	public CoordinatorMenu() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(200, 200, 750, 500);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -56,8 +56,12 @@ public class CoordinatorMenu extends JFrame {
 				frame.setVisible(false);
 			}
 		});
-		update_scholarshipButton.setBounds(160,215,117, 29);
-		contentPane.add(update_scholarshipButton);
+		JPanel button = new JPanel();
+		button.add(update_scholarshipButton);
+		//update_scholarshipButton.setBounds(160,215,50, 50);
+		
+		contentPane.add(update_scholarshipButton, BorderLayout.SOUTH);
+		
 		
 	}
 
