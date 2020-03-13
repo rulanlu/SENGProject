@@ -10,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JTextPane;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Font;
 
 public class StudentMenu extends JFrame {
 
@@ -42,13 +43,15 @@ public class StudentMenu extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		setLocationRelativeTo(null);
+		setTitle("University of Saskatchewan");
 		
 		JLabel description = new JLabel("University of Saskatchewan scholarship system.");
-		description.setBounds(6, 6, 438, 16);
+		description.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		description.setBounds(189, 6, 438, 16);
 		contentPane.add(description);
 		
-		JLabel description2 = new JLabel("Search for scholarships below using key words,");
-		description2.setBounds(6, 23, 337, 16);
+		JLabel description2 = new JLabel("Search for scholarships below or view your application history.");
+		description2.setBounds(177, 57, 515, 16);
 		contentPane.add(description2);
 		
 		JButton searchButton = new JButton("Search for Scholarships");
@@ -60,15 +63,11 @@ public class StudentMenu extends JFrame {
 				setVisible(false);
 			}
 		});
-		searchButton.setBounds(6, 85, 182, 29);
+		searchButton.setBounds(281, 122, 182, 29);
 		contentPane.add(searchButton);
 		
-		JLabel lblNewLabel = new JLabel("or view your application history.");
-		lblNewLabel.setBounds(6, 41, 213, 16);
-		contentPane.add(lblNewLabel);
-		
 		JButton btnNewButton = new JButton("Application History");
-		btnNewButton.setBounds(6, 122, 160, 29);
+		btnNewButton.setBounds(292, 181, 160, 29);
 		contentPane.add(btnNewButton);
 	}
 }

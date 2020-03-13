@@ -81,7 +81,7 @@ public class StudentLogin extends JFrame {
 							student.setVisible(true);
 							contentPane.setVisible(false);
 							setVisible(false);
-							JOptionPane.showMessageDialog(null, "login successful");
+							JOptionPane.showMessageDialog(null, "Login successful", null, JOptionPane.PLAIN_MESSAGE);
 						}
 						else if((password.getText().equals("") || username.getText().equals(""))) {
 							JOptionPane.showMessageDialog(null, "Please enter your username and password");

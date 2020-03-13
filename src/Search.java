@@ -6,6 +6,8 @@ import java.util.Scanner;
 import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.table.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 public class Search extends JFrame {
 	
    private JTextField textField;
@@ -28,8 +30,8 @@ public class Search extends JFrame {
       setVisible(true);
       setTitle("University of Saskatchewan");
       
-      String[] columns = new String[2];
-      String[][] data = new String[100][2];
+      String[] columns = new String[3];
+      String[][] data = new String[100][3];
       int count = 0;
       int i = 0;
       try {
@@ -40,10 +42,12 @@ public class Search extends JFrame {
 				if(count == 0) {
 					columns[0] = sArray[0];
 					columns[1] = sArray[1];
+					columns[2] = sArray[2];
 				}
 				else {
 					data[i][0] = sArray[0];
 					data[i][1] = sArray[1];
+					data[i][2] = sArray[2];
 					i++;
 				}
 				count++;
@@ -53,10 +57,24 @@ public class Search extends JFrame {
 			JOptionPane.showMessageDialog(null,"Scholarship Database Not Found", "Error", JOptionPane.ERROR_MESSAGE);
 	  }
       
-      table = new DefaultTableModel(data, columns);
+      table = new DefaultTableModel(data, columns) {
+    	    @Override
+    	    public boolean isCellEditable(int row, int column) {
+    	        return false;
+    	    }
+      };
+      
       sortTable = new TableRowSorter<>(table);
       
       scholarships = new JTable(table);
+      scholarships.addMouseListener(new MouseAdapter() {
+      	@Override
+      	public void mouseClicked(MouseEvent e) {
+      		int i = scholarships.getSelectedRow();
+      		String text = "Scholarship: " + (String)table.getValueAt(i, 0) + ", " + (String)table.getValueAt(i, 1) + ", " + (String)table.getValueAt(i, 2);
+      		JOptionPane.showMessageDialog(null, text, "Scholarship Information", JOptionPane.PLAIN_MESSAGE);
+      	}
+      });
       scholarships.setRowSorter(sortTable);
       
       scrollPane = new JScrollPane(scholarships);
