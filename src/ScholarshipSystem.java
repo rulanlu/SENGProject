@@ -9,6 +9,8 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.Scanner;
 import java.awt.BorderLayout;
 import javax.swing.JButton;
@@ -23,10 +25,12 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 
+
 public class ScholarshipSystem extends JFrame {
 	private JPanel contentPane;
 	private JTextField scholarshipname;
 	private JTextField scholarshipdate;
+	private JTextField scholarshipID;
 	
 	
 	public static void main(String[] args) {
@@ -44,7 +48,7 @@ public class ScholarshipSystem extends JFrame {
 	}
 	public ScholarshipSystem() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(200, 200, 750, 500);
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -59,11 +63,11 @@ public class ScholarshipSystem extends JFrame {
 		contentPane.add(welcomeLabel);
 		
 		JLabel scholarshipnameLabel = new JLabel("Scholarship Name:");
-		scholarshipnameLabel.setBounds(33, 71, 73, 16);
+		scholarshipnameLabel.setBounds(33, 71, 100, 16);
 		contentPane.add(scholarshipnameLabel);
 		
 		scholarshipname = new JTextField();
-		scholarshipname.setBounds(112, 66, 274, 26);
+		scholarshipname.setBounds(150, 66, 210, 26);
 		contentPane.add(scholarshipname);
 		scholarshipname.setColumns(10);
 		
@@ -72,9 +76,18 @@ public class ScholarshipSystem extends JFrame {
 		contentPane.add(duedateLabel);
 		
 		scholarshipdate = new JTextField();
-		scholarshipdate.setBounds(112, 130, 274, 26);
+		scholarshipdate.setBounds(150, 130, 210, 26);
 		contentPane.add(scholarshipdate);
 		scholarshipdate.setColumns(10);
+		
+		JLabel removescholarshipLabel = new JLabel("Scholarship ID");
+		removescholarshipLabel.setBounds(400, 71, 150,16);
+		contentPane.add(removescholarshipLabel);
+		
+		scholarshipID = new JTextField();
+		scholarshipID.setBounds(500, 71, 210,26);
+		contentPane.add(scholarshipID);
+		scholarshipID.setColumns(10);
 		
 		
 		
@@ -87,8 +100,13 @@ public class ScholarshipSystem extends JFrame {
 				else {
 					
 					try {
-						String appendScholarship = scholarshipname.getText() + "," + scholarshipdate.getText();
+						long lineCounter = Files.lines(Paths.get("src/Scholarships.txt")).count();
+						int unique_ID = (int) lineCounter;
+						int scholarship_ID = unique_ID;
+						
+						String appendScholarship = scholarship_ID + "," + scholarshipname.getText() + "," + scholarshipdate.getText();
 						BufferedWriter new_writer = new BufferedWriter(new FileWriter("src/Scholarships.txt", true));
+						
 						new_writer.newLine();
 						new_writer.write(appendScholarship);
 						new_writer.close();
