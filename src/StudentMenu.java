@@ -5,6 +5,11 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JTextPane;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class StudentMenu extends JFrame {
 
@@ -34,11 +39,36 @@ public class StudentMenu extends JFrame {
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		setLocationRelativeTo(null);
 		
-		JLabel lblNewLabel = new JLabel("Student");
-		contentPane.add(lblNewLabel, BorderLayout.NORTH);
+		JLabel description = new JLabel("University of Saskatchewan scholarship system.");
+		description.setBounds(6, 6, 438, 16);
+		contentPane.add(description);
+		
+		JLabel description2 = new JLabel("Search for scholarships below using key words,");
+		description2.setBounds(6, 23, 337, 16);
+		contentPane.add(description2);
+		
+		JButton searchButton = new JButton("Search for Scholarships");
+		searchButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Search search = new Search();
+				search.setVisible(true);
+				contentPane.setVisible(false);
+				setVisible(false);
+			}
+		});
+		searchButton.setBounds(6, 85, 182, 29);
+		contentPane.add(searchButton);
+		
+		JLabel lblNewLabel = new JLabel("or view your application history.");
+		lblNewLabel.setBounds(6, 41, 213, 16);
+		contentPane.add(lblNewLabel);
+		
+		JButton btnNewButton = new JButton("Application History");
+		btnNewButton.setBounds(6, 122, 160, 29);
+		contentPane.add(btnNewButton);
 	}
-
 }

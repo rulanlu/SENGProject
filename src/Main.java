@@ -46,6 +46,8 @@ public class Main {
 		frame.setBounds(100, 100, 450, 300);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setResizable(false);
+		frame.setTitle("University of Saskatchewan");
+		frame.setLocationRelativeTo(null);
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{65, 117, 189, 0};
 		gridBagLayout.rowHeights = new int[]{66, 16, 49, 29, 0};

@@ -51,6 +51,8 @@ public class CoordinatorLogin extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		setResizable(false);
+		setTitle("University of Saskatchewan");
+		setLocationRelativeTo(null);
 		
 		JLabel usernameLabel = new JLabel("Username:");
 		usernameLabel.setBounds(33, 71, 73, 16);
@@ -82,7 +84,8 @@ public class CoordinatorLogin extends JFrame {
 							CoordinatorMenu coordinator = new CoordinatorMenu();
 							coordinator.setVisible(true);
 							contentPane.setVisible(false);
-							JOptionPane.showMessageDialog(null, "login successful");
+							setVisible(false);
+						    JOptionPane.showMessageDialog(null, "login successful");
 						}
 						else if((password.getText().equals("") || username.getText().equals(""))) {
 							JOptionPane.showMessageDialog(null, "Please enter your username and password");

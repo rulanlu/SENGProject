@@ -47,6 +47,8 @@ public class StudentLogin extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		setResizable(false);
+		setTitle("University of Saskatchewan");
+		setLocationRelativeTo(null);
 		
 		JLabel usernameLabel = new JLabel("Username:");
 		usernameLabel.setBounds(33, 71, 73, 16);
@@ -78,6 +80,7 @@ public class StudentLogin extends JFrame {
 							StudentMenu student = new StudentMenu();
 							student.setVisible(true);
 							contentPane.setVisible(false);
+							setVisible(false);
 							JOptionPane.showMessageDialog(null, "login successful");
 						}
 						else if((password.getText().equals("") || username.getText().equals(""))) {
