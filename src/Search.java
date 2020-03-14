@@ -8,6 +8,8 @@ import javax.swing.event.*;
 import javax.swing.table.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 public class Search extends JFrame {
 	
    private JTextField textField;
@@ -23,7 +25,7 @@ public class Search extends JFrame {
    
    public Search() {
 	   
-      setBounds(100, 100, 450, 300);
+      setBounds(200, 200, 750, 500);
       setDefaultCloseOperation(EXIT_ON_CLOSE);
       setLocationRelativeTo(null);
       setResizable(false);
@@ -78,13 +80,13 @@ public class Search extends JFrame {
       scholarships.setRowSorter(sortTable);
       
       scrollPane = new JScrollPane(scholarships);
-      scrollPane.setBounds(0, 35, 450, 420);
+      scrollPane.setBounds(5, 35, 745, 495);
       getContentPane().setLayout(null);
       search = new JLabel("Search:");
-      search.setBounds(65, 10, 60, 15);
+      search.setBounds(178, 10, 60, 15);
       getContentPane().add(search);
       textField = new JTextField(15);
-      textField.setBounds(140, 5, 230, 25);
+      textField.setBounds(235, 4, 287, 25);
       getContentPane().add(textField);
       textField.getDocument().addDocumentListener(new DocumentListener() {
          @Override
@@ -109,5 +111,16 @@ public class Search extends JFrame {
       });
       
       getContentPane().add(scrollPane);
+      
+      JButton backButton = new JButton("Back");
+      backButton.addActionListener(new ActionListener() {
+      	public void actionPerformed(ActionEvent e) {
+			StudentMenu menu = new StudentMenu();
+			menu.setVisible(true);
+			setVisible(false);
+      	}
+      });
+      backButton.setBounds(5, 4, 75, 29);
+      getContentPane().add(backButton);
    }
 }
