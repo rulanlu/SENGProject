@@ -40,7 +40,7 @@ public class Search extends JFrame {
 			Scanner in = new Scanner(new File("src/Scholarships.txt"));
 			while (in.hasNextLine()) {
 				String s = in.nextLine();
-				String[] sArray = s.split(",");
+				String[] sArray = s.split(", ");
 				if(count == 0) {
 					columns[0] = sArray[0];
 					columns[1] = sArray[1];

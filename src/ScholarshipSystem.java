@@ -104,7 +104,7 @@ public class ScholarshipSystem extends JFrame {
 						int unique_ID = (int) lineCounter;
 						int scholarship_ID = unique_ID;
 						
-						String appendScholarship = scholarship_ID + "," + scholarshipname.getText() + "," + scholarshipdate.getText();
+						String appendScholarship = scholarship_ID + ", " + scholarshipname.getText() + ", " + scholarshipdate.getText();
 						BufferedWriter new_writer = new BufferedWriter(new FileWriter("src/Scholarships.txt", true));
 						
 						new_writer.newLine();
@@ -118,7 +118,7 @@ public class ScholarshipSystem extends JFrame {
 						try { 
 							BufferedReader new_reader = new BufferedReader(new FileReader(file));
 							String headers = new_reader.readLine().trim();
-							String[] columnNames = headers.split(",");
+							String[] columnNames = headers.split(", ");
 							DefaultTableModel new_model = (DefaultTableModel)table.getModel();
 							new_model.setColumnIdentifiers(columnNames);
 							

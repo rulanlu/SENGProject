@@ -53,7 +53,7 @@ public class CoordinatorMenu extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				ScholarshipSystem update = new ScholarshipSystem();
 				update.setVisible(true);
-				frame.setVisible(false);
+				setVisible(false);
 			}
 		});
 		JPanel button = new JPanel();

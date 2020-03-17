@@ -1,16 +1,14 @@
 Scholarship ID, Scholarship Name, Application Deadline
-1,matt,1
-2,MAtt,2
-3,MAtt,2
-4,MAtt,2
-5,MAtt,2
-6,MAtt,2
-7,MAtt,2
-8,MAtt,2
-9,MAtt,2
-10,MAtt,2
-11,MAtt,2
-12,matt,1
-13,1,1
-14,Jason Lang,1
-15,Jason Lang 2,2
+1, Jason Lang, March 31st 2020
+2, Alexander Rutherford, April 4th 2020
+3, Matt Scholarship, August 31st 2020
+4, Rulan Scholarship, August 31st 2020
+5, Smart, August 31st 2020
+6, Coronavirus, September 1st 2020
+7, President's Scholarship, June 20th 2020
+8, Governor General's Award, January 2nd 2021
+9, Scotia Bank Scholarship, April 30th 2020
+10, Continuing Students Award, June 1st 2020
+11, BRAR Memorial Scholarship, March 31st 2020
+12, Stefan Trynda Memorial Scholarship, June 5th 2020
+13, Commonwealth Scholarship Plan, February 1st 2021
