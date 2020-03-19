@@ -79,7 +79,7 @@ public class CoordinatorLogin extends JFrame {
 					Scanner in = new Scanner(new File("src/coordinator.txt"));
 					while (in.hasNextLine()) {
 						String s = in.nextLine();
-						String[] sArray = s.split(",");
+						String[] sArray = s.split(", ");
 						if(username.getText().equals(sArray[0]) && password.getText().equals(sArray[1])) {
 							CoordinatorMenu coordinator = new CoordinatorMenu();
 							coordinator.setVisible(true);

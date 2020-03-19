@@ -18,6 +18,15 @@ public class Search extends JFrame {
    private JTable scholarships;
    private TableRowSorter sortTable;
    private JScrollPane scrollPane;
+   private String username;
+	
+   public String getUsername() {
+	   return username;
+   }
+	
+   public void setUsername(String user) {
+	   this.username = user;
+   }
    
    public static void main(String[] args) {
 	      new Search();
@@ -73,8 +82,14 @@ public class Search extends JFrame {
       	@Override
       	public void mouseClicked(MouseEvent e) {
       		int i = scholarships.getSelectedRow();
-      		String text = "Scholarship: " + (String)table.getValueAt(i, 0) + ", " + (String)table.getValueAt(i, 1) + ", " + (String)table.getValueAt(i, 2);
-      		JOptionPane.showMessageDialog(null, text, "Scholarship Information", JOptionPane.PLAIN_MESSAGE);
+      		String text = (String)table.getValueAt(i, 1);
+      		ScholarshipApplication application = new ScholarshipApplication();
+      		application.setUsername(username);
+      		application.setID((String)table.getValueAt(i, 0));
+      		application.setName((String)table.getValueAt(i, 1));
+      		application.setDate((String)table.getValueAt(i, 2));
+      		application.setVisible(true);
+      		application.setTitle(text);
       	}
       });
       scholarships.setRowSorter(sortTable);

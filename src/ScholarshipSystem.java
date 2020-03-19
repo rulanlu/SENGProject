@@ -91,7 +91,7 @@ public class ScholarshipSystem extends JFrame {
 		
 		
 		
-		JButton updateTable = new JButton("update");
+		JButton updateTable = new JButton("Update");
 		updateTable.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(scholarshipname.getText().contentEquals("") || scholarshipdate.getText().contentEquals("")) {

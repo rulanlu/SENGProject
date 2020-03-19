@@ -17,9 +17,25 @@ import java.io.FileNotFoundException;
 public class StudentLogin extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField username;
-	private JTextField password;
+	private String usernameText;
+	private String passwordText;
+	
+	public String getUser() {
+		return usernameText;
+	}
+	
+	public void setUser(String user) {
+		this.usernameText = user;
+	}
 
+	public String getPass() {
+		return passwordText;
+	}
+	
+	public void setPass(String pass) {
+		this.passwordText = pass;
+	}
+	
 	/**
 	 * Launch the application.
 	 */
@@ -54,6 +70,9 @@ public class StudentLogin extends JFrame {
 		usernameLabel.setBounds(33, 71, 73, 16);
 		contentPane.add(usernameLabel);
 		
+		JTextField username;
+		JTextField password;
+		
 		username = new JTextField();
 		username.setBounds(112, 66, 274, 26);
 		contentPane.add(username);
@@ -75,11 +94,14 @@ public class StudentLogin extends JFrame {
 					Scanner in = new Scanner(new File("src/student.txt"));
 					while (in.hasNextLine()) {
 						String s = in.nextLine();
-						String[] sArray = s.split(",");
+						String[] sArray = s.split(", ");
 						if(username.getText().equals(sArray[0]) && password.getText().equals(sArray[1])) {
+							setUser(username.getText());
+							setPass(password.getText());
 							StudentMenu student = new StudentMenu();
+							student.setUsername(usernameText);
+							student.setPassword(passwordText);
 							student.setVisible(true);
-							contentPane.setVisible(false);
 							setVisible(false);
 							JOptionPane.showMessageDialog(null, "Login successful", null, JOptionPane.PLAIN_MESSAGE);
 						}

@@ -15,6 +15,24 @@ import java.awt.Font;
 public class StudentMenu extends JFrame {
 
 	private JPanel contentPane;
+	private String username;
+	private String password;
+	
+	public String getUsername() {
+		return username;
+	}
+	
+	public void setUsername(String user) {
+		this.username = user;
+	}
+	
+	public String getPassword() {
+		return password;
+	}
+	
+	public void setPassword(String pass) {
+		this.password = pass;
+	}
 
 	/**
 	 * Launch the application.
@@ -58,6 +76,7 @@ public class StudentMenu extends JFrame {
 		searchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Search search = new Search();
+				search.setUsername(username);
 				search.setVisible(true);
 				contentPane.setVisible(false);
 				setVisible(false);
