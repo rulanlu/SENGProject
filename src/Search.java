@@ -103,12 +103,8 @@ public class Search extends JFrame {
       	public void mouseClicked(MouseEvent e) {
       		int i = scholarships.getSelectedRow();
       		String text = (String)table.getValueAt(i, 1);
-      		ScholarshipApplication application = new ScholarshipApplication();
-      		//set scholarship information for next frame
-      		application.setUsername(username);
-      		application.setID((String)table.getValueAt(i, 0));
-      		application.setName((String)table.getValueAt(i, 1));
-      		application.setDate((String)table.getValueAt(i, 2));
+      		ScholarshipApplication application = new ScholarshipApplication((String)table.getValueAt(i, 1), 
+      				(String)table.getValueAt(i, 2), (String)table.getValueAt(i, 0), username);
       		application.setVisible(true);
       		application.setTitle(text);
       	}
@@ -155,6 +151,7 @@ public class Search extends JFrame {
       backButton.addActionListener(new ActionListener() {
       	public void actionPerformed(ActionEvent e) {
 			StudentMenu menu = new StudentMenu();
+			menu.setUsername(username);
 			menu.setVisible(true);
 			setVisible(false);
       	}

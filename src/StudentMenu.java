@@ -88,7 +88,6 @@ public class StudentMenu extends JFrame {
 				Search search = new Search();
 				search.setUsername(username);
 				search.setVisible(true);
-				contentPane.setVisible(false);
 				setVisible(false);
 			}
 		});
@@ -96,8 +95,16 @@ public class StudentMenu extends JFrame {
 		contentPane.add(searchButton);
 		
 		//button to go to application history
-		JButton btnNewButton = new JButton("Application History");
-		btnNewButton.setBounds(292, 181, 160, 29);
-		contentPane.add(btnNewButton);
+		//student may view their past applications
+		JButton historyButton = new JButton("Application History");
+		historyButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ApplicationHistory history = new ApplicationHistory(username);
+				history.setVisible(true);
+				setVisible(false);
+			}
+		});
+		historyButton.setBounds(292, 181, 160, 29);
+		contentPane.add(historyButton);
 	}
 }

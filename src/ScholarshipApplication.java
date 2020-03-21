@@ -34,52 +34,10 @@ import java.awt.event.ActionEvent;
 public class ScholarshipApplication extends JFrame {
 
 	private JPanel contentPane;
-	private String name;
-	private String date;
-	private String ID;
-	private String username;
-	
-	//getting setting values for scholarship information
-    public String getName() {
-	    return name;
-    }
-	
-    public void setName(String sname) {
-	    this.name = sname;
-	    JLabel scholarshipName = new JLabel("Name: " + name);
-		scholarshipName.setBounds(6, 60, 438, 16);
-		contentPane.add(scholarshipName);
-    }
-    
-    public String getDate() {
-	    return date;
-    }
-	
-    public void setDate(String sdate) {
-	    this.date = sdate;
-	    JLabel lblNewLabel = new JLabel("Application Due Date: " + date);
-		lblNewLabel.setBounds(6, 89, 438, 16);
-		contentPane.add(lblNewLabel);
-    }
-
-    public String getID() {
-	    return ID;
-    }
-	
-    public void setID(String sid) {
-	    this.ID = sid;
-	    JLabel scholarshipID = new JLabel("ID: " + ID);
-		scholarshipID.setBounds(6, 34, 438, 16);
-		contentPane.add(scholarshipID);
-    }
-    
-    public String getUsername() {
- 	   return username;
-    }
- 	
-    public void setUsername(String user) {
- 	   this.username = user;
-    }
+	static String name;
+	static String date;
+	static String ID;
+	static String username;
     
 	/**
 	 * Launch the application.
@@ -88,7 +46,7 @@ public class ScholarshipApplication extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ScholarshipApplication frame = new ScholarshipApplication();
+					ScholarshipApplication frame = new ScholarshipApplication(name, date, ID, username);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -101,13 +59,31 @@ public class ScholarshipApplication extends JFrame {
 	 * Create the frame.
 	 * Sets up labels, buttons, etc.
 	 */
-	public ScholarshipApplication() {
+	public ScholarshipApplication(String sname, String sdate, String sid, String suser) {
+		//initialize variables
+		name = sname;
+		date = sdate;
+		ID = sid;
+		username = suser;
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+	    JLabel scholarshipName = new JLabel("Name: " + name);
+		scholarshipName.setBounds(6, 60, 438, 16);
+		contentPane.add(scholarshipName);
+		
+	    JLabel lblNewLabel = new JLabel("Application Due Date: " + date);
+		lblNewLabel.setBounds(6, 89, 438, 16);
+		contentPane.add(lblNewLabel);
+		
+	    JLabel scholarshipID = new JLabel("ID: " + ID);
+		scholarshipID.setBounds(6, 34, 438, 16);
+		contentPane.add(scholarshipID);
 		
 		JLabel info = new JLabel("Information:");
 		info.setFont(new Font("Lucida Grande", Font.BOLD, 13));
@@ -123,21 +99,33 @@ public class ScholarshipApplication extends JFrame {
 		applyButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					//add student application to database
-					long lineCounter = Files.lines(Paths.get("src/Applications.txt")).count();
-					int unique_ID = (int) lineCounter;
-					int application_ID = unique_ID;
+					//check to see if student has applied for that scholarship already
+					String appendApplication = username + ", " + name;
 					
-					String appendApplication = application_ID + ", " + username + ", " + name;
-					BufferedWriter new_writer = new BufferedWriter(new FileWriter("src/Applications.txt", true));
+					boolean exists = false;
+					Scanner in = new Scanner(new File("src/Applications.txt"));
+					while (in.hasNextLine()) {
+						//ensures student can't apply for a scholarship they've already applied for
+						if (in.nextLine().equals(appendApplication)) {
+							setVisible(false);
+							JOptionPane.showMessageDialog(null, "You've already applied for this scholarship", null, JOptionPane.PLAIN_MESSAGE);
+							exists = true;
+							break;
+						} 
+					}
 					
-					new_writer.newLine();
-					new_writer.write(appendApplication);
-					new_writer.close();
-					
-					//close application window, gives success message
-					setVisible(false);
-					JOptionPane.showMessageDialog(null, "Application successful", null, JOptionPane.PLAIN_MESSAGE);
+					//if student has not applied for scholarship yet, add to database
+					if (exists == false) {
+						BufferedWriter new_writer = new BufferedWriter(new FileWriter("src/Applications.txt", true));
+						
+						new_writer.newLine();
+						new_writer.write(appendApplication);
+						new_writer.close();
+						
+						//close application window, gives success message
+						setVisible(false);
+						JOptionPane.showMessageDialog(null, "Application successful", null, JOptionPane.PLAIN_MESSAGE);
+					}
 				}
 				catch (IOException m) {
 					System.out.println("error" + m);

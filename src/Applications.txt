@@ -1,3 +1,7 @@
-Application ID, Student Name, Scholarship Name
-1, Rulan, Rulan Scholarship
-2, Rulan, Rulan Scholarship
+Student Name, Scholarship Name
+Rulan, Scotia Bank Scholarship
+Rulan, BRAR Memorial Scholarship
+Rulan, Alexander Rutherford
+Rulan, Governor General's Award
+Rulan, Smart
+Rulan, Commonwealth Scholarship Plan
