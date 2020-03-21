@@ -128,6 +128,8 @@ public class ViewApplication extends JFrame {
 		JButton cancelButton = new JButton("Cancel");
 		cancelButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				ApplicationHistory history = new ApplicationHistory(username);
+				history.setVisible(true);
 				setVisible(false);
 			}
 		});
