@@ -11,6 +11,9 @@ import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 
+
+//main class
+//login screen for coordinators and students
 public class Main {
 
 	private JFrame frame;
@@ -55,6 +58,7 @@ public class Main {
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		frame.getContentPane().setLayout(gridBagLayout);
 		
+		//button if you are student, takes you to student login
 		JButton studentButton = new JButton("Student");
 		studentButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -72,6 +76,8 @@ public class Main {
 		gbc_signInAs.gridy = 1;
 		frame.getContentPane().add(signInAs, gbc_signInAs);
 		
+		
+		//button if you are coordinator, takes you to coordinator login
 		JButton coordButton = new JButton("Coordinator");
 		coordButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

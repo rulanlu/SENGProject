@@ -25,6 +25,9 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+//where students apply for a scholarship
+//after students click on a specific scholarship, they may come here and view it
+//and then apply or cancel
 public class ScholarshipApplication extends JFrame {
 
 	private JPanel contentPane;
@@ -33,12 +36,16 @@ public class ScholarshipApplication extends JFrame {
 	private String ID;
 	private String username;
 	
+	//setting values for scholarship information
     public String getName() {
 	    return name;
     }
 	
     public void setName(String sname) {
 	    this.name = sname;
+	    JLabel scholarshipName = new JLabel("Name: " + name);
+		scholarshipName.setBounds(6, 60, 438, 16);
+		contentPane.add(scholarshipName);
     }
     
     public String getDate() {
@@ -47,6 +54,9 @@ public class ScholarshipApplication extends JFrame {
 	
     public void setDate(String sdate) {
 	    this.date = sdate;
+	    JLabel lblNewLabel = new JLabel("Application Due Date: " + date);
+		lblNewLabel.setBounds(6, 89, 438, 16);
+		contentPane.add(lblNewLabel);
     }
 
     public String getID() {
@@ -55,6 +65,9 @@ public class ScholarshipApplication extends JFrame {
 	
     public void setID(String sid) {
 	    this.ID = sid;
+	    JLabel scholarshipID = new JLabel("ID: " + ID);
+		scholarshipID.setBounds(6, 34, 438, 16);
+		contentPane.add(scholarshipID);
     }
     
     public String getUsername() {
@@ -97,26 +110,16 @@ public class ScholarshipApplication extends JFrame {
 		info.setBounds(6, 6, 101, 16);
 		contentPane.add(info);
 		
-		JLabel scholarshipName = new JLabel("Name: ");
-		scholarshipName.setBounds(6, 60, 438, 16);
-		contentPane.add(scholarshipName);
-		
-		JLabel lblNewLabel = new JLabel("Application Due Date: ");
-		lblNewLabel.setBounds(6, 89, 438, 16);
-		contentPane.add(lblNewLabel);
-		
-		JLabel scholarshipID = new JLabel("ID: ");
-		scholarshipID.setBounds(6, 34, 438, 16);
-		contentPane.add(scholarshipID);
-		
 		JLabel scholarshipGPA = new JLabel("Minimum GPA: 3.7");
 		scholarshipGPA.setBounds(6, 117, 438, 16);
 		contentPane.add(scholarshipGPA);
 		
+		//if student chooses to apply
 		JButton applyButton = new JButton("Apply");
 		applyButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					//add student application to database
 					long lineCounter = Files.lines(Paths.get("src/Applications.txt")).count();
 					int unique_ID = (int) lineCounter;
 					int application_ID = unique_ID;
@@ -128,32 +131,10 @@ public class ScholarshipApplication extends JFrame {
 					new_writer.write(appendApplication);
 					new_writer.close();
 					
-					
-					JFrame frame = new JFrame();
-					JTable table = new JTable();
-					File file = new File("src/Applications.txt");
-					try { 
-						BufferedReader new_reader = new BufferedReader(new FileReader(file));
-						String headers = new_reader.readLine().trim();
-						String[] columnNames = headers.split(", ");
-						DefaultTableModel new_model = (DefaultTableModel)table.getModel();
-						new_model.setColumnIdentifiers(columnNames);
-						
-						Object[] cells = new_reader.lines().toArray();
-						for (int counter = 0; counter < cells.length; counter++) {
-							String row = cells[counter].toString().trim();
-							String[] fillRows = row.split(",");
-							new_model.addRow(fillRows);
-							new_reader.close();
-						}
 					setVisible(false);
 					JOptionPane.showMessageDialog(null, "Application successful", null, JOptionPane.PLAIN_MESSAGE);
-					}
-					catch(Exception ab) {
-						System.out.println("there is an error" + ab);
-						
-					}
-				} catch (IOException m) {
+				}
+				catch (IOException m) {
 					System.out.println("error" + m);
 				}
 				

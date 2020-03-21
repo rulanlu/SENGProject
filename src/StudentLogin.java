@@ -14,6 +14,8 @@ import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 
+//student login screen
+//student will login to scholarship system with username and password
 public class StudentLogin extends JFrame {
 
 	private JPanel contentPane;
@@ -87,14 +89,17 @@ public class StudentLogin extends JFrame {
 		contentPane.add(password);
 		password.setColumns(10);
 		
+		//if student his login button
 		JButton loginButton = new JButton("Login");
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
+					//find student in database
 					Scanner in = new Scanner(new File("src/student.txt"));
 					while (in.hasNextLine()) {
 						String s = in.nextLine();
 						String[] sArray = s.split(", ");
+						//if username and password are correct, login successful
 						if(username.getText().equals(sArray[0]) && password.getText().equals(sArray[1])) {
 							setUser(username.getText());
 							setPass(password.getText());
@@ -105,6 +110,7 @@ public class StudentLogin extends JFrame {
 							setVisible(false);
 							JOptionPane.showMessageDialog(null, "Login successful", null, JOptionPane.PLAIN_MESSAGE);
 						}
+						//otherwise login failed
 						else if((password.getText().equals("") || username.getText().equals(""))) {
 							JOptionPane.showMessageDialog(null, "Please enter your username and password");
 						}

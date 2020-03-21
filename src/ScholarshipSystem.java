@@ -24,8 +24,11 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 
-
+//system for coordinator to add new scholarships to the system
+//coordinator will specify information and restraints for each scholarship they add
 public class ScholarshipSystem extends JFrame {
 	private JPanel contentPane;
 	private JTextField scholarshipname;
@@ -56,49 +59,39 @@ public class ScholarshipSystem extends JFrame {
 		contentPane.setLayout(null);
 		setResizable(false); 
 		setTitle("University of Saskatchewan");
+		setLocationRelativeTo(null);
 		
-		
-		JLabel welcomeLabel = new JLabel("Scholarship updater!");
-		welcomeLabel.setBounds(160, 23, 145, 16);
+		JLabel welcomeLabel = new JLabel("Add Scholarship");
+		welcomeLabel.setBounds(348, 23, 117, 16);
 		contentPane.add(welcomeLabel);
 		
 		JLabel scholarshipnameLabel = new JLabel("Scholarship Name:");
-		scholarshipnameLabel.setBounds(33, 71, 100, 16);
+		scholarshipnameLabel.setBounds(92, 71, 128, 16);
 		contentPane.add(scholarshipnameLabel);
 		
 		scholarshipname = new JTextField();
-		scholarshipname.setBounds(150, 66, 210, 26);
+		scholarshipname.setBounds(232, 66, 434, 26);
 		contentPane.add(scholarshipname);
 		scholarshipname.setColumns(10);
 		
 		JLabel duedateLabel = new JLabel("Due Date:");
-		duedateLabel.setBounds(33, 135, 73, 16);
+		duedateLabel.setBounds(147, 135, 73, 16);
 		contentPane.add(duedateLabel);
 		
 		scholarshipdate = new JTextField();
-		scholarshipdate.setBounds(150, 130, 210, 26);
+		scholarshipdate.setBounds(232, 130, 434, 26);
 		contentPane.add(scholarshipdate);
 		scholarshipdate.setColumns(10);
 		
-		JLabel removescholarshipLabel = new JLabel("Scholarship ID");
-		removescholarshipLabel.setBounds(400, 71, 150,16);
-		contentPane.add(removescholarshipLabel);
-		
-		scholarshipID = new JTextField();
-		scholarshipID.setBounds(500, 71, 210,26);
-		contentPane.add(scholarshipID);
-		scholarshipID.setColumns(10);
-		
-		
-		
-		JButton updateTable = new JButton("Update");
+		//if coordinator hits add button
+		JButton updateTable = new JButton("Add");
 		updateTable.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(scholarshipname.getText().contentEquals("") || scholarshipdate.getText().contentEquals("")) {
 					JOptionPane.showMessageDialog(null, "Please fill in all boxes.");
 				}
 				else {
-					
+					//puts new scholarship in database
 					try {
 						long lineCounter = Files.lines(Paths.get("src/Scholarships.txt")).count();
 						int unique_ID = (int) lineCounter;
@@ -115,6 +108,7 @@ public class ScholarshipSystem extends JFrame {
 						JFrame frame = new JFrame();
 						JTable table = new JTable();
 						File file = new File("src/Scholarships.txt");
+						//displays table of all scholarships for coordinator
 						try { 
 							BufferedReader new_reader = new BufferedReader(new FileReader(file));
 							String headers = new_reader.readLine().trim();
@@ -135,19 +129,33 @@ public class ScholarshipSystem extends JFrame {
 							
 						}
 						JScrollPane scrollPane = new JScrollPane(table);
-					    frame.add(scrollPane, BorderLayout.CENTER);
-					    frame.setSize(300, 150);
+					    frame.getContentPane().add(scrollPane, BorderLayout.CENTER);
+					    frame.setSize(650, 350);
+					    frame.setLocationRelativeTo(null);
 					    frame.setVisible(true);
 					}
 					catch (IOException m) {
 						System.out.println("error" + m);
 					}
+
 				}
 			}
 		});
-		updateTable.setBounds(160, 215, 117, 29);
+		updateTable.setBounds(348, 185, 117, 29);
 		contentPane.add(updateTable);
 		
-	    
+		//go back to coordinator menu
+		JButton backButton = new JButton("Back");
+		backButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CoordinatorMenu coordinator = new CoordinatorMenu();
+				coordinator.setVisible(true);
+				setVisible(false);
+			}
+		});
+		backButton.setBounds(6, 443, 85, 29);
+		contentPane.add(backButton);
+		 
 	}
 }
+

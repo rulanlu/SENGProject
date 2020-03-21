@@ -16,6 +16,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+//login screen for coordinators
+//coordinator will login to scholarship system with username and password
 public class CoordinatorLogin extends JFrame {
 
 	private JPanel contentPane;
@@ -58,6 +60,8 @@ public class CoordinatorLogin extends JFrame {
 		usernameLabel.setBounds(33, 71, 73, 16);
 		contentPane.add(usernameLabel);
 		
+		
+		//enter in username
 		username = new JTextField();
 		username.setBounds(112, 66, 274, 26);
 		contentPane.add(username);
@@ -67,19 +71,23 @@ public class CoordinatorLogin extends JFrame {
 		passwordLabel.setBounds(33, 135, 73, 16);
 		contentPane.add(passwordLabel);
 		
+		//enter in password
 		password = new JPasswordField();
 		password.setBounds(112, 130, 274, 26);
 		contentPane.add(password);
 		password.setColumns(10);
 		
+		//if coordinator clicks login
 		JButton loginButton = new JButton("Login");
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//check to see if coordinator is in database
 				try {
 					Scanner in = new Scanner(new File("src/coordinator.txt"));
 					while (in.hasNextLine()) {
 						String s = in.nextLine();
 						String[] sArray = s.split(", ");
+						//if username and password match, successful login
 						if(username.getText().equals(sArray[0]) && password.getText().equals(sArray[1])) {
 							CoordinatorMenu coordinator = new CoordinatorMenu();
 							coordinator.setVisible(true);
@@ -87,6 +95,7 @@ public class CoordinatorLogin extends JFrame {
 							setVisible(false);
 						    JOptionPane.showMessageDialog(null, "Login successful", null, JOptionPane.PLAIN_MESSAGE);
 						}
+						//otherwise, failed login, must try again
 						else if((password.getText().equals("") || username.getText().equals(""))) {
 							JOptionPane.showMessageDialog(null, "Please enter your username and password");
 						}

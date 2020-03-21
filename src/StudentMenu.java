@@ -12,6 +12,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 
+//menu for students
+//students may search for scholarships and apply for them, or view their application history
 public class StudentMenu extends JFrame {
 
 	private JPanel contentPane;
@@ -72,6 +74,7 @@ public class StudentMenu extends JFrame {
 		description2.setBounds(177, 57, 515, 16);
 		contentPane.add(description2);
 		
+		//if student wants to search, go to search page
 		JButton searchButton = new JButton("Search for Scholarships");
 		searchButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

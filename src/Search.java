@@ -10,6 +10,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
+//allows students to search for scholarships within the system
+//search results will filter based on key words that student enters
 public class Search extends JFrame {
 	
    private JTextField textField;
@@ -41,6 +44,7 @@ public class Search extends JFrame {
       setVisible(true);
       setTitle("University of Saskatchewan");
       
+      //set up the table by reading the scholarship database
       String[] columns = new String[3];
       String[][] data = new String[100][3];
       int count = 0;
@@ -77,6 +81,7 @@ public class Search extends JFrame {
       
       sortTable = new TableRowSorter<>(table);
       
+      //if student clicks on a scholarship, bring up the information/application form for that scholarship
       scholarships = new JTable(table);
       scholarships.addMouseListener(new MouseAdapter() {
       	@Override
@@ -103,6 +108,7 @@ public class Search extends JFrame {
       textField = new JTextField(15);
       textField.setBounds(235, 4, 287, 25);
       getContentPane().add(textField);
+      //update table as student searches
       textField.getDocument().addDocumentListener(new DocumentListener() {
          @Override
          public void insertUpdate(DocumentEvent e) {
