@@ -11,8 +11,12 @@ import java.awt.event.MouseEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-//allows students to search for scholarships within the system
-//search results will filter based on key words that student enters
+/**
+ * Allows students to search for scholarships within the system
+ * Search results will filter based on key words that student enters
+ * @author Rulan Lu
+ *
+ */
 public class Search extends JFrame {
 	
    private JTextField textField;
@@ -23,6 +27,7 @@ public class Search extends JFrame {
    private JScrollPane scrollPane;
    private String username;
 	
+   //getters and setters
    public String getUsername() {
 	   return username;
    }
@@ -31,10 +36,17 @@ public class Search extends JFrame {
 	   this.username = user;
    }
    
+	/**
+	 * Launch the application.
+	 */
    public static void main(String[] args) {
 	      new Search();
    }
    
+	/**
+	 * Create the frame.
+	 * Sets up labels, buttons, etc.
+	 */
    public Search() {
 	   
       setBounds(200, 200, 750, 500);
@@ -54,11 +66,13 @@ public class Search extends JFrame {
 			while (in.hasNextLine()) {
 				String s = in.nextLine();
 				String[] sArray = s.split(", ");
+				//header information
 				if(count == 0) {
 					columns[0] = sArray[0];
 					columns[1] = sArray[1];
 					columns[2] = sArray[2];
 				}
+				//actual data
 				else {
 					data[i][0] = sArray[0];
 					data[i][1] = sArray[1];
@@ -72,6 +86,7 @@ public class Search extends JFrame {
 			JOptionPane.showMessageDialog(null,"Scholarship Database Not Found", "Error", JOptionPane.ERROR_MESSAGE);
 	  }
       
+      //users are not allowed to edit table
       table = new DefaultTableModel(data, columns) {
     	    @Override
     	    public boolean isCellEditable(int row, int column) {
@@ -89,6 +104,7 @@ public class Search extends JFrame {
       		int i = scholarships.getSelectedRow();
       		String text = (String)table.getValueAt(i, 1);
       		ScholarshipApplication application = new ScholarshipApplication();
+      		//set scholarship information for next frame
       		application.setUsername(username);
       		application.setID((String)table.getValueAt(i, 0));
       		application.setName((String)table.getValueAt(i, 1));
@@ -122,6 +138,7 @@ public class Search extends JFrame {
          public void changedUpdate(DocumentEvent e) {
             search(textField.getText());
          }
+         //filters table based on search
          public void search(String str) {
             if (str.length() == 0) {
                sortTable.setRowFilter(null);
@@ -133,6 +150,7 @@ public class Search extends JFrame {
       
       getContentPane().add(scrollPane);
       
+      //goes back to student menu
       JButton backButton = new JButton("Back");
       backButton.addActionListener(new ActionListener() {
       	public void actionPerformed(ActionEvent e) {

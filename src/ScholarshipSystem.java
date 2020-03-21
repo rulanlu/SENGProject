@@ -27,15 +27,21 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
-//system for coordinator to add new scholarships to the system
-//coordinator will specify information and restraints for each scholarship they add
+/**
+ * System for coordinator to add new scholarships to the system
+ * Coordinator will specify information and restraints for each scholarship they add
+ * @author Matt Tamkee, Rulan Lu
+ *
+ */
 public class ScholarshipSystem extends JFrame {
 	private JPanel contentPane;
 	private JTextField scholarshipname;
 	private JTextField scholarshipdate;
 	private JTextField scholarshipID;
 	
-	
+	/**
+	 * Launch the application.
+	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -49,6 +55,11 @@ public class ScholarshipSystem extends JFrame {
 		});
 		
 	}
+	
+	/**
+	 * Create the frame.
+	 * Sets up labels, buttons, etc.
+	 */
 	public ScholarshipSystem() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(200, 200, 750, 500);
@@ -124,6 +135,7 @@ public class ScholarshipSystem extends JFrame {
 								new_reader.close();
 							}
 						}
+						//catches exceptions
 						catch(Exception ab) {
 							System.out.println("there is an error" + ab);
 							

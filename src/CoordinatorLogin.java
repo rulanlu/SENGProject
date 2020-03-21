@@ -16,8 +16,11 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-//login screen for coordinators
-//coordinator will login to scholarship system with username and password
+/**
+ * Login class for coordinators
+ * Coordinator will login to scholarship system with username and password
+ * @author Matt Tamkee, Rulan Lu
+ */
 public class CoordinatorLogin extends JFrame {
 
 	private JPanel contentPane;
@@ -44,6 +47,7 @@ public class CoordinatorLogin extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * Sets up labels, buttons, etc.
 	 */
 	public CoordinatorLogin() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -88,6 +92,7 @@ public class CoordinatorLogin extends JFrame {
 						String s = in.nextLine();
 						String[] sArray = s.split(", ");
 						//if username and password match, successful login
+						//go to coordinator menu
 						if(username.getText().equals(sArray[0]) && password.getText().equals(sArray[1])) {
 							CoordinatorMenu coordinator = new CoordinatorMenu();
 							coordinator.setVisible(true);

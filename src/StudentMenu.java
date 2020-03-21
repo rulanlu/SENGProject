@@ -12,14 +12,20 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
 
-//menu for students
-//students may search for scholarships and apply for them, or view their application history
+/**
+ * Class for student menu
+ * Students may search/apply for scholarships, view apllication history
+ * and later on will be able to edit their information
+ * @author Rulan Lu
+ *
+ */
 public class StudentMenu extends JFrame {
 
 	private JPanel contentPane;
 	private String username;
 	private String password;
 	
+	//getters and setters
 	public String getUsername() {
 		return username;
 	}
@@ -54,6 +60,7 @@ public class StudentMenu extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * Sets up labels, buttons, etc.
 	 */
 	public StudentMenu() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -88,6 +95,7 @@ public class StudentMenu extends JFrame {
 		searchButton.setBounds(281, 122, 182, 29);
 		contentPane.add(searchButton);
 		
+		//button to go to application history
 		JButton btnNewButton = new JButton("Application History");
 		btnNewButton.setBounds(292, 181, 160, 29);
 		contentPane.add(btnNewButton);

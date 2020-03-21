@@ -7,10 +7,13 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JButton;
-
-//menu for coordinators
-//coordinators may choose to add, edit, or delete scholarships here
-//they can also view students' applications and accept/deny applications
+/**
+ * Menu for coordinators
+ * Coordinators may choose to add, edit, or delete scholarships here
+ * They can also view students' applications and accept/deny applications
+ * @author Matt Tamkee, Rulan Lu
+ *
+ */
 public class CoordinatorMenu extends JFrame {
 
 	private JPanel contentPane;
@@ -34,6 +37,7 @@ public class CoordinatorMenu extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * Sets up labels, buttons, etc.
 	 */
 	public CoordinatorMenu() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -55,6 +59,7 @@ public class CoordinatorMenu extends JFrame {
 		contentPane.add(description2);
 		
 		//button to add a new scholarship
+		//brings up scholarship adding screen
 		JButton update_scholarshipButton = new JButton("Add Scholarship");
 		update_scholarshipButton.setBounds(286, 127, 166, 29);
 		update_scholarshipButton.addActionListener(new ActionListener() {

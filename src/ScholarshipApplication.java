@@ -25,9 +25,12 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-//where students apply for a scholarship
-//after students click on a specific scholarship, they may come here and view it
-//and then apply or cancel
+/**
+ * Class for applying for scholarships
+ * After a student clicks on a specific scholarship, they can view the details here
+ * Then, they may choose to apply or cancel
+ * @author Rulan Lu, Matt Tamkee
+ */
 public class ScholarshipApplication extends JFrame {
 
 	private JPanel contentPane;
@@ -36,7 +39,7 @@ public class ScholarshipApplication extends JFrame {
 	private String ID;
 	private String username;
 	
-	//setting values for scholarship information
+	//getting setting values for scholarship information
     public String getName() {
 	    return name;
     }
@@ -96,6 +99,7 @@ public class ScholarshipApplication extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * Sets up labels, buttons, etc.
 	 */
 	public ScholarshipApplication() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -131,6 +135,7 @@ public class ScholarshipApplication extends JFrame {
 					new_writer.write(appendApplication);
 					new_writer.close();
 					
+					//close application window, gives success message
 					setVisible(false);
 					JOptionPane.showMessageDialog(null, "Application successful", null, JOptionPane.PLAIN_MESSAGE);
 				}

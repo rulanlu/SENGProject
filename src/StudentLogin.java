@@ -14,14 +14,19 @@ import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-//student login screen
-//student will login to scholarship system with username and password
+/**
+ * Class for student login screen
+ * Student will login to scholarship system with username and password
+ * @author Rulan Lu, Matt Tamkee
+ *
+ */
 public class StudentLogin extends JFrame {
 
 	private JPanel contentPane;
 	private String usernameText;
 	private String passwordText;
 	
+	//getters nad setters for student information
 	public String getUser() {
 		return usernameText;
 	}
@@ -56,6 +61,7 @@ public class StudentLogin extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * Sets up labels, buttons, etc.
 	 */
 	public StudentLogin() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -100,6 +106,7 @@ public class StudentLogin extends JFrame {
 						String s = in.nextLine();
 						String[] sArray = s.split(", ");
 						//if username and password are correct, login successful
+						//go to student menu
 						if(username.getText().equals(sArray[0]) && password.getText().equals(sArray[1])) {
 							setUser(username.getText());
 							setPass(password.getText());
@@ -110,7 +117,7 @@ public class StudentLogin extends JFrame {
 							setVisible(false);
 							JOptionPane.showMessageDialog(null, "Login successful", null, JOptionPane.PLAIN_MESSAGE);
 						}
-						//otherwise login failed
+						//otherwise login failed, must try again
 						else if((password.getText().equals("") || username.getText().equals(""))) {
 							JOptionPane.showMessageDialog(null, "Please enter your username and password");
 						}
