@@ -102,12 +102,14 @@ public class StudentLogin extends JFrame {
 				try {
 					//find student in database
 					Scanner in = new Scanner(new File("src/student.txt"));
+					boolean found = false;
 					while (in.hasNextLine()) {
 						String s = in.nextLine();
 						String[] sArray = s.split(", ");
 						//if username and password are correct, login successful
 						//go to student menu
 						if(username.getText().equals(sArray[0]) && password.getText().equals(sArray[1])) {
+							found = true;
 							setUser(username.getText());
 							setPass(password.getText());
 							StudentMenu student = new StudentMenu();
@@ -120,7 +122,10 @@ public class StudentLogin extends JFrame {
 						//otherwise login failed, must try again
 						else if((password.getText().equals("") || username.getText().equals(""))) {
 							JOptionPane.showMessageDialog(null, "Please enter your username and password");
-						}
+						} 
+					}
+					if (found == false) {
+						JOptionPane.showMessageDialog(null, "Incorrect username and/or password");
 					}
 					in.close();
 				} catch (FileNotFoundException m) {

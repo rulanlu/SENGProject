@@ -15,7 +15,7 @@ import java.awt.Font;
 /**
  * Class for student menu
  * Students may search/apply for scholarships, view apllication history
- * and later on will be able to edit their information
+ * and will be able to edit their information
  * @author Rulan Lu
  *
  */
@@ -77,8 +77,8 @@ public class StudentMenu extends JFrame {
 		description.setBounds(189, 6, 438, 16);
 		contentPane.add(description);
 		
-		JLabel description2 = new JLabel("Search for scholarships below or view your application history.");
-		description2.setBounds(177, 57, 515, 16);
+		JLabel description2 = new JLabel("Search for scholarships below, view your application history, view your account information.");
+		description2.setBounds(92, 57, 582, 16);
 		contentPane.add(description2);
 		
 		//if student wants to search, go to search page
@@ -106,5 +106,16 @@ public class StudentMenu extends JFrame {
 		});
 		historyButton.setBounds(292, 181, 160, 29);
 		contentPane.add(historyButton);
+		
+		JButton studentInformation = new JButton("Account Information");
+		studentInformation.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				StudentInformation information = new StudentInformation(username);
+				information.setVisible(true);
+				setVisible(false);
+			}
+		});
+		studentInformation.setBounds(292, 242, 165, 29);
+		contentPane.add(studentInformation);
 	}
 }

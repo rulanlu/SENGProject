@@ -1,1 +1,2 @@
-Rulan, 1234
+Name, Password, GPA, Faculty
+Rulan, 1234, 3.8, Science

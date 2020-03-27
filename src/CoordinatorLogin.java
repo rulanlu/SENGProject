@@ -104,6 +104,9 @@ public class CoordinatorLogin extends JFrame {
 						else if((password.getText().equals("") || username.getText().equals(""))) {
 							JOptionPane.showMessageDialog(null, "Please enter your username and password");
 						}
+						else {
+							JOptionPane.showMessageDialog(null, "Incorrect username and/or password");
+						}
 					}
 					in.close();
 				} catch (FileNotFoundException m) {
