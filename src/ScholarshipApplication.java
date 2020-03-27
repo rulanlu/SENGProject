@@ -38,6 +38,9 @@ public class ScholarshipApplication extends JFrame {
 	static String date;
 	static String ID;
 	static String username;
+	static String GPA;
+	static String amount;
+	static String faculty;
     
 	/**
 	 * Launch the application.
@@ -46,7 +49,7 @@ public class ScholarshipApplication extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ScholarshipApplication frame = new ScholarshipApplication(name, date, ID, username);
+					ScholarshipApplication frame = new ScholarshipApplication(name, date, ID, username, GPA, amount, faculty);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -59,12 +62,15 @@ public class ScholarshipApplication extends JFrame {
 	 * Create the frame.
 	 * Sets up labels, buttons, etc.
 	 */
-	public ScholarshipApplication(String sname, String sdate, String sid, String suser) {
+	public ScholarshipApplication(String sname, String sdate, String sid, String suser, String sgpa, String samount, String sfac) {
 		//initialize variables
 		name = sname;
 		date = sdate;
 		ID = sid;
 		username = suser;
+		GPA = sgpa;
+		amount = samount;
+		faculty = sfac;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -90,9 +96,19 @@ public class ScholarshipApplication extends JFrame {
 		info.setBounds(6, 6, 101, 16);
 		contentPane.add(info);
 		
-		JLabel scholarshipGPA = new JLabel("Minimum GPA: 3.7");
+		JLabel scholarshipGPA = new JLabel("Minimum GPA: " + GPA);
 		scholarshipGPA.setBounds(6, 117, 438, 16);
 		contentPane.add(scholarshipGPA);
+		
+		JLabel amountLabel = new JLabel("Amount: " + amount);
+		amountLabel.setBounds(6, 145, 438, 16);
+		contentPane.add(amountLabel);
+		
+		JLabel facLabel = new JLabel("Faculty: " + faculty);
+		facLabel.setBounds(6, 173, 438, 16);
+		contentPane.add(facLabel);
+		
+		setLocationRelativeTo(null);
 		
 		//if student chooses to apply
 		JButton applyButton = new JButton("Apply");
@@ -144,6 +160,6 @@ public class ScholarshipApplication extends JFrame {
 		});
 		cancelButton.setBounds(6, 243, 106, 29);
 		contentPane.add(cancelButton);
-		setLocationRelativeTo(null);
+		
 	}
 }

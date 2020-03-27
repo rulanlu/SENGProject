@@ -57,8 +57,8 @@ public class Search extends JFrame {
       setTitle("University of Saskatchewan");
       
       //set up the table by reading the scholarship database
-      String[] columns = new String[3];
-      String[][] data = new String[100][3];
+      String[] columns = new String[6];
+      String[][] data = new String[100][6];
       int count = 0;
       int i = 0;
       try {
@@ -71,12 +71,18 @@ public class Search extends JFrame {
 					columns[0] = sArray[0];
 					columns[1] = sArray[1];
 					columns[2] = sArray[2];
+					columns[3] = sArray[3];
+					columns[4] = sArray[4];
+					columns[5] = sArray[5];
 				}
 				//actual data
 				else {
 					data[i][0] = sArray[0];
 					data[i][1] = sArray[1];
 					data[i][2] = sArray[2];
+					data[i][3] = sArray[3];
+					data[i][4] = sArray[4];
+					data[i][5] = sArray[5];
 					i++;
 				}
 				count++;
@@ -95,16 +101,21 @@ public class Search extends JFrame {
       };
       
       sortTable = new TableRowSorter<>(table);
+      scholarships = new JTable(table);
+      
+      scholarships.getColumnModel().getColumn(0).setPreferredWidth(25);
+      scholarships.getColumnModel().getColumn(1).setPreferredWidth(200);
+      scholarships.getColumnModel().getColumn(2).setPreferredWidth(150);
       
       //if student clicks on a scholarship, bring up the information/application form for that scholarship
-      scholarships = new JTable(table);
       scholarships.addMouseListener(new MouseAdapter() {
       	@Override
       	public void mouseClicked(MouseEvent e) {
       		int i = scholarships.getSelectedRow();
       		String text = (String)table.getValueAt(i, 1);
       		ScholarshipApplication application = new ScholarshipApplication((String)table.getValueAt(i, 1), 
-      				(String)table.getValueAt(i, 2), (String)table.getValueAt(i, 0), username);
+      				(String)table.getValueAt(i, 2), (String)table.getValueAt(i, 0), username, (String)table.getValueAt(i, 3), 
+      				(String)table.getValueAt(i, 4), (String)table.getValueAt(i, 5));
       		application.setVisible(true);
       		application.setTitle(text);
       	}

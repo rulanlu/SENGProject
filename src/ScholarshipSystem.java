@@ -26,6 +26,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+import java.awt.Font;
 
 /**
  * System for coordinator to add new scholarships to the system
@@ -35,9 +36,12 @@ import javax.swing.table.TableRowSorter;
  */
 public class ScholarshipSystem extends JFrame {
 	private JPanel contentPane;
-	private JTextField scholarshipname;
-	private JTextField scholarshipdate;
+	private JTextField scholarshipName;
+	private JTextField scholarshipDate;
 	private JTextField scholarshipID;
+	private JTextField scholarshipGPA;
+	private JTextField scholarshipAmount;
+	private JTextField scholarshipFaculty;
 	
 	/**
 	 * Launch the application.
@@ -73,32 +77,61 @@ public class ScholarshipSystem extends JFrame {
 		setLocationRelativeTo(null);
 		
 		JLabel welcomeLabel = new JLabel("Add Scholarship");
-		welcomeLabel.setBounds(348, 23, 117, 16);
+		welcomeLabel.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
+		welcomeLabel.setBounds(315, 23, 166, 16);
 		contentPane.add(welcomeLabel);
 		
 		JLabel scholarshipnameLabel = new JLabel("Scholarship Name:");
 		scholarshipnameLabel.setBounds(92, 71, 128, 16);
 		contentPane.add(scholarshipnameLabel);
 		
-		scholarshipname = new JTextField();
-		scholarshipname.setBounds(232, 66, 434, 26);
-		contentPane.add(scholarshipname);
-		scholarshipname.setColumns(10);
+		scholarshipName = new JTextField();
+		scholarshipName.setBounds(232, 66, 384, 26);
+		contentPane.add(scholarshipName);
+		scholarshipName.setColumns(10);
 		
 		JLabel duedateLabel = new JLabel("Due Date:");
 		duedateLabel.setBounds(147, 135, 73, 16);
 		contentPane.add(duedateLabel);
 		
-		scholarshipdate = new JTextField();
-		scholarshipdate.setBounds(232, 130, 434, 26);
-		contentPane.add(scholarshipdate);
-		scholarshipdate.setColumns(10);
+		scholarshipDate = new JTextField();
+		scholarshipDate.setBounds(232, 130, 384, 26);
+		contentPane.add(scholarshipDate);
+		scholarshipDate.setColumns(10);
+		
+		scholarshipGPA = new JTextField();
+		scholarshipGPA.setBounds(232, 194, 384, 26);
+		contentPane.add(scholarshipGPA);
+		scholarshipGPA.setColumns(10);
+		
+		JLabel gpaLabel = new JLabel("Minimum GPA:");
+		gpaLabel.setBounds(118, 199, 105, 16);
+		contentPane.add(gpaLabel);
+		
+		scholarshipAmount = new JTextField();
+		scholarshipAmount.setBounds(232, 261, 384, 26);
+		contentPane.add(scholarshipAmount);
+		scholarshipAmount.setColumns(10);
+		
+		JLabel amountLabel = new JLabel("Amount:");
+		amountLabel.setBounds(159, 266, 61, 16);
+		contentPane.add(amountLabel);
+		
+		scholarshipFaculty = new JTextField();
+		scholarshipFaculty.setBounds(232, 328, 384, 26);
+		contentPane.add(scholarshipFaculty);
+		scholarshipFaculty.setColumns(10);
+		
+		JLabel facLabel = new JLabel("Faculty:");
+		facLabel.setBounds(162, 333, 61, 16);
+		contentPane.add(facLabel);
 		
 		//if coordinator hits add button
 		JButton updateTable = new JButton("Add");
 		updateTable.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(scholarshipname.getText().contentEquals("") || scholarshipdate.getText().contentEquals("")) {
+				if(scholarshipName.getText().contentEquals("") || scholarshipDate.getText().contentEquals("") 
+						|| scholarshipGPA.getText().contentEquals("") || scholarshipAmount.getText().contentEquals("") || scholarshipFaculty.getText().contentEquals("")) {
 					JOptionPane.showMessageDialog(null, "Please fill in all boxes.");
 				}
 				else {
@@ -108,7 +141,8 @@ public class ScholarshipSystem extends JFrame {
 						int unique_ID = (int) lineCounter;
 						int scholarship_ID = unique_ID;
 						
-						String appendScholarship = scholarship_ID + ", " + scholarshipname.getText() + ", " + scholarshipdate.getText();
+						String appendScholarship = scholarship_ID + ", " + scholarshipName.getText() + ", " + scholarshipDate.getText() 
+							+ ", " + scholarshipGPA.getText() + ", $" + scholarshipAmount.getText() + ", " + scholarshipFaculty.getText();
 						BufferedWriter new_writer = new BufferedWriter(new FileWriter("src/Scholarships.txt", true));
 						
 						new_writer.newLine();
@@ -130,7 +164,7 @@ public class ScholarshipSystem extends JFrame {
 							Object[] cells = new_reader.lines().toArray();
 							for (int counter = 0; counter < cells.length; counter++) {
 								String row = cells[counter].toString().trim();
-								String[] fillRows = row.split(",");
+								String[] fillRows = row.split(", ");
 								new_model.addRow(fillRows);
 								new_reader.close();
 							}
@@ -153,7 +187,7 @@ public class ScholarshipSystem extends JFrame {
 				}
 			}
 		});
-		updateTable.setBounds(348, 185, 117, 29);
+		updateTable.setBounds(633, 443, 117, 29);
 		contentPane.add(updateTable);
 		
 		//go back to coordinator menu

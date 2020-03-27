@@ -29,8 +29,6 @@ public class ViewApplication extends JFrame {
 
 	private JPanel contentPane;
 	static String name;
-	static String date;
-	static String ID;
 	static String username;
 
 	/**
@@ -67,21 +65,13 @@ public class ViewApplication extends JFrame {
 		setLocationRelativeTo(null);
 		
 		JLabel scholarshipName = new JLabel("Name: " + name);
-		scholarshipName.setBounds(6, 60, 438, 16);
+		scholarshipName.setBounds(6, 37, 438, 16);
 		contentPane.add(scholarshipName);
-		
-	    JLabel lblNewLabel = new JLabel("Application Due Date: " + date);
-		lblNewLabel.setBounds(6, 89, 438, 16);
-		contentPane.add(lblNewLabel);
 		
 		JLabel info = new JLabel("Information:");
 		info.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 		info.setBounds(6, 6, 101, 16);
 		contentPane.add(info);
-		
-		JLabel scholarshipGPA = new JLabel("Minimum GPA: 3.7");
-		scholarshipGPA.setBounds(6, 117, 438, 16);
-		contentPane.add(scholarshipGPA);
 		
 		//if student chooses to withdraw application
 		JButton applyButton = new JButton("Withdraw");
