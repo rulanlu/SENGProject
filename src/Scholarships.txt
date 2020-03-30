@@ -1,14 +1,14 @@
 ID, Scholarship Name, Application Deadline, Minimum GPA, Amount, Faculty
-1, Jason Lang, March 31st 2020, 3.20, $1000, All
-2, Alexander Rutherford, April 4th 2020, 3.70, $2500, All
-3, Matt Scholarship, August 31st 2020, 3.00, $1000, Science
-4, Rulan Scholarship, August 31st 2020, 3.00, $1000, Science
-5, Smart, August 31st 2020, 3.00, $3000, Art
-6, Coronavirus, September 1st 2020, 4.00, $500, All
-7, President's Scholarship, June 20th 2020, 3.00, $1000, All
-8, Governor General's Award, January 2nd 2021, 3.00, $1000, All
-9, Scotia Bank Scholarship, April 30th 2020, 3.80, $1000, Business
-10, Continuing Students Award, June 1st 2020, 4.00, $10000, All
-11, BRAR Memorial Scholarship, March 31st 2020, 3.00, $1000, All
-12, Stefan Trynda Memorial Scholarship, June 5th 2020, 3.40, $10000, All
-13, Commonwealth Scholarship Plan, February 1st 2021, 3.70, $10000, All
+1, Jason Lang, 03/31/2020, 3.20, $1000, All
+2, Alexander Rutherford, 04/04/2020, 3.70, $2500, All
+3, Matt Scholarship, 08/31/2020, 3.00, $1000, Science
+4, Rulan Scholarship, 08/31/2020, 3.00, $1000, Science
+5, Smart, 08/31/2020, 3.00, $3000, Art
+6, Coronavirus, 09/01/2020, 4.00, $500, All
+7, President's Scholarship, 06/20/2020, 3.00, $1000, All
+8, Governor General's Award, 01/02/2021, 3.00, $1000, All
+9, Scotia Bank Scholarship, 04/30/2020, 3.80, $1000, Business
+10, Continuing Students Award, 06/01/2020, 4.00, $10000, All
+11, BRAR Memorial Scholarship, 03/31/2020, 3.00, $1000, All
+12, Stefan Trynda Memorial Scholarship, 06/05/2020, 3.40, $10000, All
+13, Commonwealth Scholarship Plan, 02/01/2021, 3.70, $10000, All

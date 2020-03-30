@@ -11,9 +11,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.text.DateFormat;
+import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.Scanner;
 import java.awt.BorderLayout;
 import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -90,16 +94,22 @@ public class ScholarshipSystem extends JFrame {
 		contentPane.add(scholarshipName);
 		scholarshipName.setColumns(10);
 		
-		JLabel duedateLabel = new JLabel("Due Date:");
-		duedateLabel.setBounds(147, 135, 73, 16);
+		JLabel duedateLabel = new JLabel("Due Date (MM/DD/YYYY):");
+		duedateLabel.setBounds(50, 135, 174, 16);
 		contentPane.add(duedateLabel);
 		
-		scholarshipDate = new JTextField();
+		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+		scholarshipDate = new JFormattedTextField(dateFormat);
 		scholarshipDate.setBounds(232, 130, 384, 26);
 		contentPane.add(scholarshipDate);
 		scholarshipDate.setColumns(10);
 		
-		scholarshipGPA = new JTextField();
+		//ensures proper formatting for GPA
+        NumberFormat percentFormat = NumberFormat.getNumberInstance();
+        percentFormat.setMinimumFractionDigits(2);
+        percentFormat.setMaximumFractionDigits(3);
+		
+		scholarshipGPA = new JFormattedTextField(percentFormat);
 		scholarshipGPA.setBounds(232, 194, 384, 26);
 		contentPane.add(scholarshipGPA);
 		scholarshipGPA.setColumns(10);
@@ -108,7 +118,11 @@ public class ScholarshipSystem extends JFrame {
 		gpaLabel.setBounds(118, 199, 105, 16);
 		contentPane.add(gpaLabel);
 		
-		scholarshipAmount = new JTextField();
+		//ensures proper formatting for scholarship amount
+        NumberFormat amountFormat = NumberFormat.getNumberInstance();
+        amountFormat.setMinimumFractionDigits(0);
+		
+		scholarshipAmount = new JFormattedTextField(amountFormat);
 		scholarshipAmount.setBounds(232, 261, 384, 26);
 		contentPane.add(scholarshipAmount);
 		scholarshipAmount.setColumns(10);
@@ -133,6 +147,10 @@ public class ScholarshipSystem extends JFrame {
 				if(scholarshipName.getText().contentEquals("") || scholarshipDate.getText().contentEquals("") 
 						|| scholarshipGPA.getText().contentEquals("") || scholarshipAmount.getText().contentEquals("") || scholarshipFaculty.getText().contentEquals("")) {
 					JOptionPane.showMessageDialog(null, "Please fill in all boxes.");
+				} else if ((Double.parseDouble(scholarshipGPA.getText()) > 4.30) || (Double.parseDouble(scholarshipGPA.getText()) < 0.00)) {
+					JOptionPane.showMessageDialog(null, "Please enter a valid number for GPA (Between 0.00 and 4.30");
+				} else if (Integer.parseInt(scholarshipAmount.getText()) < 50) {
+					JOptionPane.showMessageDialog(null, "Please enter a valid amount for the scholarship (Must be greater than $50)");
 				}
 				else {
 					//puts new scholarship in database

@@ -41,6 +41,8 @@ public class ScholarshipApplication extends JFrame {
 	static String GPA;
 	static String amount;
 	static String faculty;
+	private String studentFaculty;
+	private double studentGPA;
     
 	/**
 	 * Launch the application.
@@ -115,38 +117,63 @@ public class ScholarshipApplication extends JFrame {
 		applyButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try {
-					//check to see if student has applied for that scholarship already
-					String appendApplication = username + ", " + name;
-					
-					boolean exists = false;
-					Scanner in = new Scanner(new File("src/Applications.txt"));
+					//find student in database
+					Scanner in = new Scanner(new File("src/student.txt"));
+					boolean found = false;
 					while (in.hasNextLine()) {
-						//ensures student can't apply for a scholarship they've already applied for
-						if (in.nextLine().equals(appendApplication)) {
-							setVisible(false);
-							JOptionPane.showMessageDialog(null, "You've already applied for this scholarship", null, JOptionPane.PLAIN_MESSAGE);
-							exists = true;
-							break;
-						} 
+						String s = in.nextLine();
+						String[] sArray = s.split(", ");
+						//if username and password are correct, login successful
+						//go to student menu
+						if(username.equals(sArray[0])) {
+							studentGPA = Double.parseDouble(sArray[2]);
+							studentFaculty = sArray[3];
+						}
 					}
-					
-					//if student has not applied for scholarship yet, add to database
-					if (exists == false) {
-						BufferedWriter new_writer = new BufferedWriter(new FileWriter("src/Applications.txt", true));
-						
-						new_writer.newLine();
-						new_writer.write(appendApplication);
-						new_writer.close();
-						
-						//close application window, gives success message
-						setVisible(false);
-						JOptionPane.showMessageDialog(null, "Application successful", null, JOptionPane.PLAIN_MESSAGE);
-					}
+					in.close();
+				} catch (FileNotFoundException m) {
+					JOptionPane.showMessageDialog(null,"User Database Not Found", "Error", JOptionPane.ERROR_MESSAGE);
 				}
-				catch (IOException m) {
-					System.out.println("error" + m);
-				}
+				//ensures that student is eligible for the scholarship
+				if (studentGPA < Double.parseDouble(GPA)) {
+					JOptionPane.showMessageDialog(null, "You are not eligible for this scholarship (GPA)", null, JOptionPane.PLAIN_MESSAGE);
+				} else if (!(studentFaculty.equals(faculty)) && !(faculty.equals("All"))) {
+					JOptionPane.showMessageDialog(null, "You are not eligible for this scholarship (Faculty)", null, JOptionPane.PLAIN_MESSAGE);
+				} else {
 				
+					try {
+						//check to see if student has applied for that scholarship already
+						String appendApplication = username + ", " + name;
+						
+						boolean exists = false;
+						Scanner in = new Scanner(new File("src/Applications.txt"));
+						while (in.hasNextLine()) {
+							//ensures student can't apply for a scholarship they've already applied for
+							if (in.nextLine().equals(appendApplication)) {
+								setVisible(false);
+								JOptionPane.showMessageDialog(null, "You've already applied for this scholarship", null, JOptionPane.PLAIN_MESSAGE);
+								exists = true;
+								break;
+							} 
+						}
+						
+						//if student has not applied for scholarship yet, add to database
+						if (exists == false) {
+							BufferedWriter new_writer = new BufferedWriter(new FileWriter("src/Applications.txt", true));
+							
+							new_writer.newLine();
+							new_writer.write(appendApplication);
+							new_writer.close();
+							
+							//close application window, gives success message
+							setVisible(false);
+							JOptionPane.showMessageDialog(null, "Application successful", null, JOptionPane.PLAIN_MESSAGE);
+						}
+					}
+					catch (IOException m) {
+						System.out.println("error" + m);
+					}
+				}
 			}
 		});
 		applyButton.setBounds(357, 243, 87, 29);
