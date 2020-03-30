@@ -1,11 +1,20 @@
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import javax.swing.JLabel;
+import javax.imageio.ImageIO;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 /**
  * Menu for coordinators
@@ -84,6 +93,21 @@ public class CoordinatorMenu extends JFrame {
 		JButton btnNewButton = new JButton("View Applications");
 		btnNewButton.setBounds(293, 209, 159, 29);
 		contentPane.add(btnNewButton);
+		
+		//university of saskatchewan logo
+		JLabel logoLabel = new JLabel("");
+		logoLabel.setBounds(286, 268, 180, 176);
+		contentPane.add(logoLabel);
+		
+		BufferedImage img = null;
+		try {
+			img = ImageIO.read(new File("images/logo.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		Image image = img.getScaledInstance(logoLabel.getWidth(), logoLabel.getHeight(), Image.SCALE_SMOOTH);
+		logoLabel.setIcon(new ImageIcon(image));
 		
 		
 	}

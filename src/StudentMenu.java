@@ -6,11 +6,17 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JTextPane;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 import java.awt.Font;
+import java.awt.Image;
 
 /**
  * Class for student menu
@@ -104,7 +110,7 @@ public class StudentMenu extends JFrame {
 				setVisible(false);
 			}
 		});
-		historyButton.setBounds(292, 181, 160, 29);
+		historyButton.setBounds(295, 163, 160, 29);
 		contentPane.add(historyButton);
 		
 		JButton studentInformation = new JButton("Account Information");
@@ -115,7 +121,23 @@ public class StudentMenu extends JFrame {
 				setVisible(false);
 			}
 		});
-		studentInformation.setBounds(292, 242, 165, 29);
+		studentInformation.setBounds(298, 204, 165, 29);
 		contentPane.add(studentInformation);
+		
+		//university of saskatchewan logo
+		JLabel logoLabel = new JLabel("");
+		logoLabel.setBounds(286, 268, 180, 176);
+		contentPane.add(logoLabel);
+		
+		BufferedImage img = null;
+		try {
+			img = ImageIO.read(new File("images/logo.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		Image image = img.getScaledInstance(logoLabel.getWidth(), logoLabel.getHeight(), Image.SCALE_SMOOTH);
+		logoLabel.setIcon(new ImageIcon(image));
+		
 	}
 }

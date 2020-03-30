@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Image;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -18,8 +19,11 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.awt.event.ActionEvent;
 
 /**
@@ -101,7 +105,7 @@ public class StudentInformation extends JFrame {
 		facLabel.setBounds(9, 98, 227, 16);
 		contentPane.add(facLabel);
 		
-		//if student wants to edit their information, go to editing page
+		//if stu0, 130ants to edit their information, go to editing page
 		JButton editName = new JButton("Edit");
 		editName.setBounds(9, 128, 91, 29);
 		editName.addActionListener(new ActionListener() {
@@ -137,6 +141,20 @@ public class StudentInformation extends JFrame {
 			}
 		});
 		contentPane.add(confirmButton);
+		
+		JLabel studentLabel = new JLabel("");
+		studentLabel.setBounds(248, 6, 181, 169);
+		contentPane.add(studentLabel);
+		
+		BufferedImage img = null;
+		try {
+			img = ImageIO.read(new File("images/student.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		Image image = img.getScaledInstance(studentLabel.getWidth(), studentLabel.getHeight(), Image.SCALE_SMOOTH);
+		studentLabel.setIcon(new ImageIcon(image));
 		
 		setLocationRelativeTo(null);
 		setTitle("University of Saskatchewan");
