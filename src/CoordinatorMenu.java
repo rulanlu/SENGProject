@@ -85,14 +85,21 @@ public class CoordinatorMenu extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		//button to edit an existing scholarship
-		JButton editButton = new JButton("Edit Existing Scholarship");
+		JButton editButton = new JButton("View/Edit Scholarship");
+		editButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ViewExistingScholarships edit = new ViewExistingScholarships();
+				edit.setVisible(true);
+				setVisible(false);				
+			}
+		});
 		editButton.setBounds(274, 168, 194, 29);
 		contentPane.add(editButton);
 		
 		//button to view student applications
-		JButton btnNewButton = new JButton("View Applications");
-		btnNewButton.setBounds(293, 209, 159, 29);
-		contentPane.add(btnNewButton);
+		JButton viewAppsButton = new JButton("View Applications");
+		viewAppsButton.setBounds(290, 209, 159, 29);
+		contentPane.add(viewAppsButton);
 		
 		//university of saskatchewan logo
 		JLabel logoLabel = new JLabel("");

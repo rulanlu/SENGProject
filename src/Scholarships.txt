@@ -4,7 +4,7 @@ ID, Scholarship Name, Application Deadline, Minimum GPA, Amount, Faculty
 3, Matt Scholarship, 08/31/2020, 3.00, $1000, Science
 4, Rulan Scholarship, 08/31/2020, 3.00, $1000, Science
 5, Smart, 08/31/2020, 3.00, $3000, Art
-6, Coronavirus, 09/01/2020, 4.00, $500, All
+6, Evan's Big Scholarship, 09/01/2020, 4.00, $50000, Science
 7, President's Scholarship, 06/20/2020, 3.00, $1000, All
 8, Governor General's Award, 01/02/2021, 3.00, $1000, All
 9, Scotia Bank Scholarship, 04/30/2020, 3.80, $1000, Business

@@ -34,7 +34,7 @@ public class EditInformation extends JFrame {
 	static String password;
 	static String GPA;
 	static String faculty;
-	private JTextField nameField;
+	private JTextField usernameField;
 	private JTextField gpaField;
 	private JComboBox facField;
 
@@ -86,10 +86,10 @@ public class EditInformation extends JFrame {
 		contentPane.add(facLabel);
 		
 		//shows text fields with current student information
-		nameField = new JTextField(username);
-		nameField.setBounds(109, 12, 211, 26);
-		contentPane.add(nameField);
-		nameField.setColumns(10);
+		usernameField = new JTextField(username);
+		usernameField.setBounds(109, 12, 211, 26);
+		contentPane.add(usernameField);
+		usernameField.setColumns(10);
 		
 		//ensures proper formatting for GPA
         NumberFormat percentFormat = NumberFormat.getNumberInstance();
@@ -102,7 +102,7 @@ public class EditInformation extends JFrame {
 		gpaField.setColumns(10);
 		
 		//available faculties for student to choose from
-		String faculties[] = { "All", "Architecture", "Arts", "Business", "Education", "Engineering", "Kinesiology", "Law", "Medicine", "Nursing", "Science"};
+		String faculties[] = {"Architecture", "Arts", "Business", "Education", "Engineering", "Kinesiology", "Law", "Medicine", "Nursing", "Science"};
 		
 		facField = new JComboBox(faculties);
 		facField.setSelectedItem(faculty);
@@ -114,7 +114,7 @@ public class EditInformation extends JFrame {
 		change.addActionListener(new ActionListener() {
 			//check to see that fields are entered in correctly
 			public void actionPerformed(ActionEvent e) {
-				if (nameField.getText().equals("") || gpaField.getText().equals("")) {
+				if (usernameField.getText().equals("") || gpaField.getText().equals("")) {
 					JOptionPane.showMessageDialog(null, "Please fill in all fields");
 				} else if ((Double.parseDouble(gpaField.getText()) > 4.30) || (Double.parseDouble(gpaField.getText()) < 0.00)) {
 					JOptionPane.showMessageDialog(null, "Please enter a valid number for GPA (Between 0.00 and 4.30");
@@ -131,7 +131,7 @@ public class EditInformation extends JFrame {
 			                if (sArray.length > 0) {
 			                	//if line containing student is found, edit it
 			                    if (sArray[0].equals(username)) {
-			                        String newLine = nameField.getText() + ", " + password + ", " + gpaField.getText() + ", " + facField.getSelectedItem().toString();
+			                        String newLine = usernameField.getText() + ", " + password + ", " + gpaField.getText() + ", " + facField.getSelectedItem().toString();
 			                        fileContent.append(newLine);
 			                        fileContent.append("\n");
 			                    //otherwise keep it as it is
@@ -159,7 +159,7 @@ public class EditInformation extends JFrame {
 				                if (sArray2.length > 0) {
 				                	//if line containing student is found, edit it
 				                    if (sArray2[0].equals(username)) {
-				                        String newLine2 = nameField.getText() + ", " + sArray2[1];
+				                        String newLine2 = usernameField.getText() + ", " + sArray2[1];
 				                        fileContent2.append(newLine2);
 				                        fileContent2.append("\n");
 				                    //otherwise keep it as it is
@@ -183,7 +183,7 @@ public class EditInformation extends JFrame {
 				        System.out.println("Problem reading file.");
 				    }
 					//change variables and go back to student information
-	                username = nameField.getText();
+	                username = usernameField.getText();
 	                GPA = gpaField.getText();
 	                faculty = facField.getSelectedItem().toString();
 					StudentInformation information = new StudentInformation(username);
