@@ -123,11 +123,13 @@ public class ApplicationHistory extends JFrame {
 	        	@Override
 	        	public void mouseClicked(MouseEvent e) {
 	        		int i = scholarships.getSelectedRow();
-	        		String text = (String)table.getValueAt(i, 0) + ": " + (String)table.getValueAt(i, 1);
-	        		ViewApplication application = new ViewApplication((String)table.getValueAt(i, 0), (String)table.getValueAt(i, 1));
-	        		application.setVisible(true);
-	        		application.setTitle(text);
-	        		setVisible(false);
+	        		if (scholarships.getValueAt(scholarships.getSelectedRow(), 0) != null) {
+		        		String text = (String)table.getValueAt(i, 0) + ": " + (String)table.getValueAt(i, 1);
+		        		ViewApplication application = new ViewApplication((String)table.getValueAt(i, 0), (String)table.getValueAt(i, 1));
+		        		application.setVisible(true);
+		        		application.setTitle(text);
+		        		setVisible(false);
+	        		}
 	        	}
 	    });
 	    

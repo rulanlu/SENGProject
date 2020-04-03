@@ -112,12 +112,14 @@ public class Search extends JFrame {
       	@Override
       	public void mouseClicked(MouseEvent e) {
       		int i = scholarships.getSelectedRow();
-      		String text = (String)table.getValueAt(i, 1);
-      		ScholarshipApplication application = new ScholarshipApplication((String)table.getValueAt(i, 1), 
-      				(String)table.getValueAt(i, 2), (String)table.getValueAt(i, 0), username, (String)table.getValueAt(i, 3), 
-      				(String)table.getValueAt(i, 4), (String)table.getValueAt(i, 5));
-      		application.setVisible(true);
-      		application.setTitle(text);
+      		if (scholarships.getValueAt(scholarships.getSelectedRow(), 0) != null) {
+	      		String text = (String)table.getValueAt(i, 1);
+	      		ScholarshipApplication application = new ScholarshipApplication((String)table.getValueAt(i, 1), 
+	      				(String)table.getValueAt(i, 2), (String)table.getValueAt(i, 0), username, (String)table.getValueAt(i, 3), 
+	      				(String)table.getValueAt(i, 4), (String)table.getValueAt(i, 5));
+	      		application.setVisible(true);
+	      		application.setTitle(text);
+      		}
       	}
       });
       scholarships.setRowSorter(sortTable);

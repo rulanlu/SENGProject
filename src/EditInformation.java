@@ -19,6 +19,7 @@ import javax.swing.JFormattedTextField;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
 
 /**
  * Allows student to edit their own information
@@ -35,7 +36,7 @@ public class EditInformation extends JFrame {
 	static String faculty;
 	private JTextField nameField;
 	private JTextField gpaField;
-	private JTextField facField;
+	private JComboBox facField;
 
 	/**
 	 * Launch the application.
@@ -100,17 +101,20 @@ public class EditInformation extends JFrame {
 		contentPane.add(gpaField);
 		gpaField.setColumns(10);
 		
-		facField = new JTextField(faculty);
-		facField.setBounds(109, 98, 211, 26);
+		//available faculties for student to choose from
+		String faculties[] = { "All", "Architecture", "Arts", "Business", "Education", "Engineering", "Kinesiology", "Law", "Medicine", "Nursing", "Science"};
+		
+		facField = new JComboBox(faculties);
+		facField.setSelectedItem(faculty);
+		facField.setBounds(109, 99, 211, 27);
 		contentPane.add(facField);
-		facField.setColumns(10);
 		
 		//if student chooses to change information
 		JButton change = new JButton("Change");
 		change.addActionListener(new ActionListener() {
 			//check to see that fields are entered in correctly
 			public void actionPerformed(ActionEvent e) {
-				if (nameField.getText().equals("") || gpaField.getText().equals("") || facField.getText().equals("")) {
+				if (nameField.getText().equals("") || gpaField.getText().equals("")) {
 					JOptionPane.showMessageDialog(null, "Please fill in all fields");
 				} else if ((Double.parseDouble(gpaField.getText()) > 4.30) || (Double.parseDouble(gpaField.getText()) < 0.00)) {
 					JOptionPane.showMessageDialog(null, "Please enter a valid number for GPA (Between 0.00 and 4.30");
@@ -127,7 +131,7 @@ public class EditInformation extends JFrame {
 			                if (sArray.length > 0) {
 			                	//if line containing student is found, edit it
 			                    if (sArray[0].equals(username)) {
-			                        String newLine = nameField.getText() + ", " + password + ", " + gpaField.getText() + ", " + facField.getText();
+			                        String newLine = nameField.getText() + ", " + password + ", " + gpaField.getText() + ", " + facField.getSelectedItem().toString();
 			                        fileContent.append(newLine);
 			                        fileContent.append("\n");
 			                    //otherwise keep it as it is
@@ -181,7 +185,7 @@ public class EditInformation extends JFrame {
 					//change variables and go back to student information
 	                username = nameField.getText();
 	                GPA = gpaField.getText();
-	                faculty = facField.getText();
+	                faculty = facField.getSelectedItem().toString();
 					StudentInformation information = new StudentInformation(username);
 					information.setVisible(true);
 					setVisible(false);

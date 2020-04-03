@@ -1,6 +1,8 @@
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -31,6 +33,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.Font;
+import javax.swing.JComboBox;
 
 /**
  * System for coordinator to add new scholarships to the system
@@ -45,7 +48,7 @@ public class ScholarshipSystem extends JFrame {
 	private JTextField scholarshipID;
 	private JTextField scholarshipGPA;
 	private JTextField scholarshipAmount;
-	private JTextField scholarshipFaculty;
+	private JComboBox scholarshipFaculty;
 	
 	/**
 	 * Launch the application.
@@ -119,22 +122,23 @@ public class ScholarshipSystem extends JFrame {
 		contentPane.add(gpaLabel);
 		
 		//ensures proper formatting for scholarship amount
-        NumberFormat amountFormat = NumberFormat.getNumberInstance();
-        amountFormat.setMinimumFractionDigits(0);
+        NumberFormat amountFormat = NumberFormat.getIntegerInstance();
+        amountFormat.setGroupingUsed(false);
 		
 		scholarshipAmount = new JFormattedTextField(amountFormat);
 		scholarshipAmount.setBounds(232, 261, 384, 26);
 		contentPane.add(scholarshipAmount);
 		scholarshipAmount.setColumns(10);
 		
+		String faculties[] = { "All", "Architecture", "Arts", "Business", "Education", "Engineering", "Kinesiology", "Law", "Medicine", "Nursing", "Science"};
+		
+		scholarshipFaculty = new JComboBox(faculties);
+		scholarshipFaculty.setBounds(232, 329, 384, 27);
+		contentPane.add(scholarshipFaculty);
+		
 		JLabel amountLabel = new JLabel("Amount:");
 		amountLabel.setBounds(159, 266, 61, 16);
 		contentPane.add(amountLabel);
-		
-		scholarshipFaculty = new JTextField();
-		scholarshipFaculty.setBounds(232, 328, 384, 26);
-		contentPane.add(scholarshipFaculty);
-		scholarshipFaculty.setColumns(10);
 		
 		JLabel facLabel = new JLabel("Faculty:");
 		facLabel.setBounds(162, 333, 61, 16);
@@ -144,8 +148,9 @@ public class ScholarshipSystem extends JFrame {
 		JButton updateTable = new JButton("Add");
 		updateTable.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//checks to ensure that all fields are filled in correctly
 				if(scholarshipName.getText().contentEquals("") || scholarshipDate.getText().contentEquals("") 
-						|| scholarshipGPA.getText().contentEquals("") || scholarshipAmount.getText().contentEquals("") || scholarshipFaculty.getText().contentEquals("")) {
+						|| scholarshipGPA.getText().contentEquals("") || scholarshipAmount.getText().contentEquals("")) {
 					JOptionPane.showMessageDialog(null, "Please fill in all boxes.");
 				} else if ((Double.parseDouble(scholarshipGPA.getText()) > 4.30) || (Double.parseDouble(scholarshipGPA.getText()) < 0.00)) {
 					JOptionPane.showMessageDialog(null, "Please enter a valid number for GPA (Between 0.00 and 4.30");
@@ -160,7 +165,7 @@ public class ScholarshipSystem extends JFrame {
 						int scholarship_ID = unique_ID;
 						
 						String appendScholarship = scholarship_ID + ", " + scholarshipName.getText() + ", " + scholarshipDate.getText() 
-							+ ", " + scholarshipGPA.getText() + ", $" + scholarshipAmount.getText() + ", " + scholarshipFaculty.getText();
+							+ ", " + scholarshipGPA.getText() + ", $" + scholarshipAmount.getText() + ", " + scholarshipFaculty.getSelectedItem().toString();
 						BufferedWriter new_writer = new BufferedWriter(new FileWriter("src/Scholarships.txt", true));
 						
 						new_writer.newLine();
@@ -170,6 +175,7 @@ public class ScholarshipSystem extends JFrame {
 						
 						JFrame frame = new JFrame();
 						JTable table = new JTable();
+						
 						File file = new File("src/Scholarships.txt");
 						//displays table of all scholarships for coordinator
 						try { 
@@ -197,6 +203,18 @@ public class ScholarshipSystem extends JFrame {
 					    frame.setSize(650, 350);
 					    frame.setLocationRelativeTo(null);
 					    frame.setVisible(true);
+					    frame.setTitle("Scholarship Successfully Added");
+					    //when closing table window, go back to coordinator menu
+					    frame.addWindowListener(new WindowAdapter() {
+				            @Override
+				            public void windowClosing(WindowEvent e) {
+				            	CoordinatorMenu coordinator = new CoordinatorMenu();
+								coordinator.setVisible(true);
+								contentPane.setVisible(false);
+								setVisible(false);
+				            }
+				        });
+					    
 					}
 					catch (IOException m) {
 						System.out.println("error" + m);
@@ -219,6 +237,7 @@ public class ScholarshipSystem extends JFrame {
 		});
 		backButton.setBounds(6, 443, 85, 29);
 		contentPane.add(backButton);
+		
 		 
 	}
 }
