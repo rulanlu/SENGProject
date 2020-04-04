@@ -98,6 +98,13 @@ public class CoordinatorMenu extends JFrame {
 		
 		//button to view student applications
 		JButton viewAppsButton = new JButton("View Applications");
+		viewAppsButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				ViewApplicationsCoordinator applications = new ViewApplicationsCoordinator();
+				applications.setVisible(true);
+				setVisible(false);
+			}
+		});
 		viewAppsButton.setBounds(290, 209, 159, 29);
 		contentPane.add(viewAppsButton);
 		

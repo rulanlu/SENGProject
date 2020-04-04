@@ -25,7 +25,7 @@ import javax.swing.border.EmptyBorder;
  * @author Rulan
  *
  */
-public class ViewApplication extends JFrame {
+public class ViewApplicationStudent extends JFrame {
 
 	private JPanel contentPane;
 	static String name;
@@ -38,7 +38,7 @@ public class ViewApplication extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ViewApplication frame = new ViewApplication(username, name);
+					ViewApplicationStudent frame = new ViewApplicationStudent(username, name);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -51,7 +51,7 @@ public class ViewApplication extends JFrame {
 	 * Create the frame.
 	 * Sets up labels, buttons, etc.
 	 */
-	public ViewApplication(String suser, String sname) {
+	public ViewApplicationStudent(String suser, String sname) {
 		//initialize variables
 		name = sname;
 		username = suser;
