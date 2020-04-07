@@ -23,8 +23,9 @@ import java.io.FileNotFoundException;
 public class StudentLogin extends JFrame {
 
 	private JPanel contentPane;
-	private String usernameText;
+	public String usernameText;
 	private String passwordText;
+	protected Object student;
 	
 	//getters nad setters for student information
 	public String getUser() {
