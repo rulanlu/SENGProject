@@ -1,4 +1,4 @@
-ID, Scholarship Name, Application Deadline, Minimum GPA, Amount, Faculty
+ID, Scholarship Name, Application Deadline, Minimum GPA, Amount, Faculty, Supplemental Required
 1, Jason Lang, 03/31/2020, 3.20, $1000, All
 2, Alexander Rutherford, 04/04/2020, 3.70, $2500, All
 3, Matt Scholarship, 08/31/2020, 3.00, $1000, Science
