@@ -9,7 +9,7 @@ import javax.swing.border.EmptyBorder;
  * Allows coordinators to give students a response regarding their applications
  * Either accept or reject the application
  * Students will then be notified, and the application status will be updated in the database
- * @author Rulan
+ * @author Rulan Lu
  *
  */
 public class RespondToApplication extends JFrame {

@@ -71,8 +71,8 @@ public class ViewExistingScholarships extends JFrame {
 		contentPane.setLayout(null);
 		
 		//set up the table by reading the scholarship database
-	      String[] columns = new String[6];
-	      String[][] data = new String[100][6];
+	      String[] columns = new String[7];
+	      String[][] data = new String[100][7];
 	      int count = 0;
 	      int i = 0;
 	      try {
@@ -88,6 +88,7 @@ public class ViewExistingScholarships extends JFrame {
 						columns[3] = sArray[3];
 						columns[4] = sArray[4];
 						columns[5] = sArray[5];
+						columns[6] = sArray[6];
 					}
 					//actual data
 					else {
@@ -97,6 +98,7 @@ public class ViewExistingScholarships extends JFrame {
 						data[i][3] = sArray[3];
 						data[i][4] = sArray[4];
 						data[i][5] = sArray[5];
+						data[i][6] = sArray[6];
 						i++;
 					}
 					count++;

@@ -74,6 +74,7 @@ public class Search extends JFrame {
 					columns[3] = sArray[3];
 					columns[4] = sArray[4];
 					columns[5] = sArray[5];
+					columns[6] = sArray[6];
 				}
 				//actual data
 				else {
@@ -83,6 +84,7 @@ public class Search extends JFrame {
 					data[i][3] = sArray[3];
 					data[i][4] = sArray[4];
 					data[i][5] = sArray[5];
+					data[i][6] = sArray[6];
 					i++;
 				}
 				count++;
