@@ -57,8 +57,8 @@ public class Search extends JFrame {
       setTitle("University of Saskatchewan");
       
       //set up the table by reading the scholarship database
-      String[] columns = new String[6];
-      String[][] data = new String[100][6];
+      String[] columns = new String[7];
+      String[][] data = new String[100][7];
       int count = 0;
       int i = 0;
       try {
