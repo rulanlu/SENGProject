@@ -14,6 +14,7 @@ import java.util.Scanner;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -22,13 +23,19 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFormattedTextField;
+import javax.swing.JTextArea;
+
+/**
+ * Application form that allows students to enter in additional information about themselves
+ * Such as a personal response, a resume, transcript, etc.
+ * @author Matt Tamkee, Rulan Lu
+ *
+ */
 public class SupplementalApplication extends JFrame {
-	
 	
 	private JPanel contentPane; 
 	private JFrame frame;
 	private JTextField scholarshipName;
-	private JTextField supplemental;
 	protected Object usernameText;
 	static String name;
 	static String ID;
@@ -65,21 +72,19 @@ public class SupplementalApplication extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel scholarshipnameLabel = new JLabel("Scholarship Name:  " + name);
-		scholarshipnameLabel.setBounds(92, 71, 250, 16);
+		scholarshipnameLabel.setBounds(46, 71, 497, 16);
 		contentPane.add(scholarshipnameLabel);
 		
-		
+		//text area for student information
+		JTextArea supplemental = new JTextArea();
+		supplemental.setBounds(178, 135, 505, 281);
+		contentPane.add(supplemental);
 		
 		JLabel supplementalApp = new JLabel("Application Form: ");
 		supplementalApp.setBounds(50, 135, 174, 16);
 		contentPane.add(supplementalApp);
 		
-		supplemental = new JTextField();
-		supplemental.setBounds(232, 130, 384, 300);
-		contentPane.add(supplemental);
-		supplemental.setColumns(10);
-		
-		JButton updateTable = new JButton("upload");
+		JButton updateTable = new JButton("Upload");
 		updateTable.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(supplemental.getText().contentEquals("")) {
@@ -111,8 +116,20 @@ public class SupplementalApplication extends JFrame {
 				}
 			}
 		});
-		updateTable.setBounds(633, 433, 117, 29);
+		updateTable.setBounds(633, 449, 117, 29);
 		contentPane.add(updateTable);
+		
+		JButton backButton = new JButton("Back");
+		backButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Search search = new Search();
+				search.setUsername(username);
+				search.setVisible(true);
+				setVisible(false);
+			}
+		});
+		backButton.setBounds(0, 449, 75, 29);
+		contentPane.add(backButton);
 		
 	}
 }

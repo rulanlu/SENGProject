@@ -12,14 +12,3 @@ ID, Scholarship Name, Application Deadline, Minimum GPA, Amount, Faculty, Supple
 11, BRAR Memorial Scholarship, 03/31/2020, 3.00, $1000, All, Yes
 12, Stefan Trynda Memorial Scholarship, 06/05/2020, 3.40, $10000, All, Yes
 13, Commonwealth Scholarship Plan, 02/01/2021, 3.70, $10000, All, Yes
-
-
-15, Ajax, 03/30/2022, 2.00, $1000, All
-17, Ajax, 03/30/2022, 2.00, $1000, All
-18, Ajax, 03/30/2022, 2.00, $1000, All
-19, Ajax, 03/30/2022, 2.00, $1000, All
-20, Ajax, 03/30/2022, 2.00, $1000, All
-21, Ajax, 03/30/2022, 2.00, $1000, All
-22, Ajax, 03/30/2022, 2.00, $1000, All
-23, Ajax, 03/30/2022, 2.00, $1000, All
-24, Ajax, 03/30/2022, 2.00, $1000, All

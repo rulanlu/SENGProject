@@ -101,12 +101,12 @@ public class ScholarshipSystem extends JFrame {
 		scholarshipName.setColumns(10);
 		
 		JLabel duedateLabel = new JLabel("Due Date (MM/DD/YYYY):");
-		duedateLabel.setBounds(50, 135, 174, 16);
+		duedateLabel.setBounds(50, 128, 174, 16);
 		contentPane.add(duedateLabel);
 		
 		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
 		scholarshipDate = new JFormattedTextField(dateFormat);
-		scholarshipDate.setBounds(232, 130, 384, 26);
+		scholarshipDate.setBounds(232, 123, 384, 26);
 		contentPane.add(scholarshipDate);
 		scholarshipDate.setColumns(10);
 		
@@ -116,12 +116,12 @@ public class ScholarshipSystem extends JFrame {
         percentFormat.setMaximumFractionDigits(3);
 		
 		scholarshipGPA = new JFormattedTextField(percentFormat);
-		scholarshipGPA.setBounds(232, 194, 384, 26);
+		scholarshipGPA.setBounds(232, 179, 384, 26);
 		contentPane.add(scholarshipGPA);
 		scholarshipGPA.setColumns(10);
 		
 		JLabel gpaLabel = new JLabel("Minimum GPA:");
-		gpaLabel.setBounds(118, 199, 105, 16);
+		gpaLabel.setBounds(118, 184, 105, 16);
 		contentPane.add(gpaLabel);
 		
 		//ensures proper formatting for scholarship amount
@@ -129,52 +129,34 @@ public class ScholarshipSystem extends JFrame {
         amountFormat.setGroupingUsed(false);
 		
 		scholarshipAmount = new JFormattedTextField(amountFormat);
-		scholarshipAmount.setBounds(232, 261, 384, 26);
+		scholarshipAmount.setBounds(232, 236, 384, 26);
 		contentPane.add(scholarshipAmount);
 		scholarshipAmount.setColumns(10);
 		
 		String faculties[] = { "All", "Architecture", "Arts", "Business", "Education", "Engineering", "Kinesiology", "Law", "Medicine", "Nursing", "Science"};
 		
 		scholarshipFaculty = new JComboBox(faculties);
-		scholarshipFaculty.setBounds(232, 329, 384, 27);
+		scholarshipFaculty.setBounds(232, 293, 384, 27);
 		contentPane.add(scholarshipFaculty);
 		
 		JLabel amountLabel = new JLabel("Amount:");
-		amountLabel.setBounds(159, 266, 61, 16);
+		amountLabel.setBounds(163, 241, 61, 16);
 		contentPane.add(amountLabel);
 		
 		JLabel facLabel = new JLabel("Faculty:");
-		facLabel.setBounds(162, 333, 61, 16);
+		facLabel.setBounds(163, 297, 61, 16);
 		contentPane.add(facLabel);
 		
 		//supplemental requirement
-		JLabel suppLabel = new JLabel("Is a supplemental Application Required:(Check for yes) ");
-		suppLabel.setBounds(40, 390, 350 ,16);
+		JLabel suppLabel = new JLabel("Supplementary Application Required?:");
+		suppLabel.setBounds(219, 349, 247 ,16);
 		contentPane.add(suppLabel);
 		
-		JCheckBox c1 = new JCheckBox();
-		c1.setBounds(360, 373, 50, 50);
-		contentPane.add(c1);
-		
-		c1.addItemListener(new ItemListener() {
+		JCheckBox yesCheckBox = new JCheckBox();
+		yesCheckBox.setText("Yes");
+		yesCheckBox.setBounds(493, 332, 85, 50);
+		contentPane.add(yesCheckBox);
 
-			
-			public void itemStateChanged(ItemEvent c) {
-				// TODO Auto-generated method stub
-				String state;
-				if(c.getStateChange() == 1) {
-					state = "yes";
-				}
-				else {
-					state = "no";
-				}
-				System.out.println(state);
-			}
-			
-		});
-		
-		
-		
 		
 		//if coordinator hits add button
 		JButton updateTable = new JButton("Add");
@@ -196,8 +178,16 @@ public class ScholarshipSystem extends JFrame {
 						int unique_ID = (int) lineCounter;
 						int scholarship_ID = unique_ID;
 						
-						String appendScholarship = scholarship_ID + ", " + scholarshipName.getText() + ", " + scholarshipDate.getText() 
-							+ ", " + scholarshipGPA.getText() + ", $" + scholarshipAmount.getText() + ", " + scholarshipFaculty.getSelectedItem().toString();
+						//checks to see if scholarship requires supplementary application or no
+						String appendScholarship;
+						if (yesCheckBox.isSelected()) {
+							appendScholarship = scholarship_ID + ", " + scholarshipName.getText() + ", " + scholarshipDate.getText() 
+							+ ", " + scholarshipGPA.getText() + ", $" + scholarshipAmount.getText() + ", " + scholarshipFaculty.getSelectedItem().toString() + ", " + "Yes";
+						} else {
+							appendScholarship = scholarship_ID + ", " + scholarshipName.getText() + ", " + scholarshipDate.getText() 
+							+ ", " + scholarshipGPA.getText() + ", $" + scholarshipAmount.getText() + ", " + scholarshipFaculty.getSelectedItem().toString() + ", " + "No";
+						}
+						
 						BufferedWriter new_writer = new BufferedWriter(new FileWriter("src/Scholarships.txt", true));
 						
 						new_writer.newLine();
