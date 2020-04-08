@@ -64,17 +64,13 @@ public class SupplementalApplication extends JFrame {
 		setLocationRelativeTo(null);
 		contentPane.setLayout(null);
 		
-		JLabel scholarshipnameLabel = new JLabel("Scholarship Name:");
-		scholarshipnameLabel.setBounds(92, 71, 128, 16);
+		JLabel scholarshipnameLabel = new JLabel("Scholarship Name:  " + name);
+		scholarshipnameLabel.setBounds(92, 71, 250, 16);
 		contentPane.add(scholarshipnameLabel);
 		
-		scholarshipName = new JTextField();
-		scholarshipName.setBounds(232, 66, 384, 26);
-		contentPane.add(scholarshipName);
-		scholarshipName.setColumns(10);
 		
 		
-		JLabel supplementalApp = new JLabel("Application Form:");
+		JLabel supplementalApp = new JLabel("Application Form: ");
 		supplementalApp.setBounds(50, 135, 174, 16);
 		contentPane.add(supplementalApp);
 		
@@ -86,31 +82,27 @@ public class SupplementalApplication extends JFrame {
 		JButton updateTable = new JButton("upload");
 		updateTable.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(scholarshipName.getText().contentEquals("") || supplemental.getText().contentEquals("")) {
+				if(supplemental.getText().contentEquals("")) {
 					JOptionPane.showMessageDialog(null, "Please fill in all boxes.");
 					
 				}
 				else {
 					try {
-						//System.out.println(scholarshipName.getText());
-						StudentLogin astudent = new StudentLogin();
-						Scanner in = new Scanner(new File("src/Scholarships.txt"));
-						while (in.hasNextLine()) {
-							String s = in.nextLine();
-							String[] sArray = s.split(", ");
-							//System.out.println(sArray[1]);
-							if(scholarshipName.getText().equals(sArray[1])) {
-								//System.out.println("found");
+						
+						// To Do
+						/**
 								String appendApplication = username + ", " + supplemental.getText();
 								BufferedWriter new_writer = new BufferedWriter(new FileWriter("src/"+ scholarshipName.getText() + ".txt", true)); 
 								new_writer.newLine();
 								new_writer.write(appendApplication);
 								new_writer.close();
+								**/
+						
 							}
 							
-						}
-						in.close();
-					}
+						
+						
+					
 					catch (Exception ab) {
 						System.out.println("error" + ab);
 						

@@ -1,6 +1,8 @@
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
@@ -19,6 +21,7 @@ import java.text.SimpleDateFormat;
 import java.util.Scanner;
 import java.awt.BorderLayout;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -144,6 +147,35 @@ public class ScholarshipSystem extends JFrame {
 		facLabel.setBounds(162, 333, 61, 16);
 		contentPane.add(facLabel);
 		
+		//supplemental requirement
+		JLabel suppLabel = new JLabel("Is a supplemental Application Required:(Check for yes) ");
+		suppLabel.setBounds(40, 390, 350 ,16);
+		contentPane.add(suppLabel);
+		
+		JCheckBox c1 = new JCheckBox();
+		c1.setBounds(360, 373, 50, 50);
+		contentPane.add(c1);
+		
+		c1.addItemListener(new ItemListener() {
+
+			
+			public void itemStateChanged(ItemEvent c) {
+				// TODO Auto-generated method stub
+				String state;
+				if(c.getStateChange() == 1) {
+					state = "yes";
+				}
+				else {
+					state = "no";
+				}
+				System.out.println(state);
+			}
+			
+		});
+		
+		
+		
+		
 		//if coordinator hits add button
 		JButton updateTable = new JButton("Add");
 		updateTable.addActionListener(new ActionListener() {
@@ -172,11 +204,14 @@ public class ScholarshipSystem extends JFrame {
 						new_writer.write(appendScholarship);
 						new_writer.close();
 						
+			
+						
 						
 						JFrame frame = new JFrame();
 						JTable table = new JTable();
 						
 						File file = new File("src/Scholarships.txt");
+						
 						//displays table of all scholarships for coordinator
 						try { 
 							BufferedReader new_reader = new BufferedReader(new FileReader(file));

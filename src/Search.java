@@ -118,7 +118,8 @@ public class Search extends JFrame {
 	      		String text = (String)table.getValueAt(i, 1);
 	      		ScholarshipApplication application = new ScholarshipApplication((String)table.getValueAt(i, 1), 
 	      				(String)table.getValueAt(i, 2), (String)table.getValueAt(i, 0), username, (String)table.getValueAt(i, 3), 
-	      				(String)table.getValueAt(i, 4), (String)table.getValueAt(i, 5));
+	      				(String)table.getValueAt(i, 4), (String)table.getValueAt(i, 5), (String)table.getValueAt(i,6));
+	      		
 	      		application.setVisible(true);
 	      		application.setTitle(text);
       		}

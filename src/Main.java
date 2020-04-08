@@ -17,7 +17,7 @@ import java.awt.Insets;
  * Main class
  * Initial screen for both coordinators and students
  * Allows selection of user type
- * @author Rulan Lu
+ * @author Rulan Lu, Matt Tamkee
  *
  */
 public class Main {
