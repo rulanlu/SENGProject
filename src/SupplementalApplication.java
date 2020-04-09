@@ -94,18 +94,24 @@ public class SupplementalApplication extends JFrame {
 				else {
 					try {
 						String s = "src/" + name + ".txt";
+						String appendApplication = username + ", " + supplemental.getText();
 						//make a specific text file for applications for the specific scholarship
 						File scholarshipTxt = new File(s);
-						scholarshipTxt.createNewFile(); // if file already exists, do nothing 
-						FileOutputStream oFile = new FileOutputStream(scholarshipTxt, false);
-						
-						//append application to scholarship text file
-						String appendApplication = username + ", " + supplemental.getText();
-						BufferedWriter writerOne = new BufferedWriter(new FileWriter(s, true)); 
-						
-						writerOne.newLine();
-						writerOne.write(appendApplication);
-						writerOne.close();
+						boolean exists = scholarshipTxt.exists();
+						if (exists) {
+							BufferedWriter new_writer = new BufferedWriter(new FileWriter(s, true));
+							
+							new_writer.newLine();
+							new_writer.write(appendApplication);
+							new_writer.close();
+						} else {
+							FileOutputStream oFile = new FileOutputStream(scholarshipTxt, false);
+							BufferedWriter writerOne = new BufferedWriter(new FileWriter(s, true)); 
+							
+							writerOne.newLine();
+							writerOne.write(appendApplication);
+							writerOne.close();
+						}
 		
 						//append application to applications
 						appendApplication = username + ", " + name;

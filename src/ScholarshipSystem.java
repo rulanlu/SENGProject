@@ -193,10 +193,7 @@ public class ScholarshipSystem extends JFrame {
 						new_writer.newLine();
 						new_writer.write(appendScholarship);
 						new_writer.close();
-						
-			
-						
-						
+							
 						JFrame frame = new JFrame();
 						JTable table = new JTable();
 						

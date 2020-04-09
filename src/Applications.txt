@@ -1,3 +1,4 @@
 Student Name, Scholarship Name
 Rulan, Rulan Scholarship
+Test, Commonwealth Scholarship Plan
 Rulan, Commonwealth Scholarship Plan
