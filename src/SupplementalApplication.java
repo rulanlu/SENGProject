@@ -6,6 +6,7 @@ import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -88,30 +89,38 @@ public class SupplementalApplication extends JFrame {
 		updateTable.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(supplemental.getText().contentEquals("")) {
-					JOptionPane.showMessageDialog(null, "Please fill in all boxes.");
-					
+					JOptionPane.showMessageDialog(null, "Please fill in all boxes.");	
 				}
 				else {
 					try {
+						String s = "src/" + name + ".txt";
+						//make a specific text file for applications for the specific scholarship
+						File scholarshipTxt = new File(s);
+						scholarshipTxt.createNewFile(); // if file already exists, do nothing 
+						FileOutputStream oFile = new FileOutputStream(scholarshipTxt, false);
 						
-						// To Do
-						/**
-								String appendApplication = username + ", " + supplemental.getText();
-								BufferedWriter new_writer = new BufferedWriter(new FileWriter("src/"+ scholarshipName.getText() + ".txt", true)); 
-								new_writer.newLine();
-								new_writer.write(appendApplication);
-								new_writer.close();
-								**/
+						//append application to scholarship text file
+						String appendApplication = username + ", " + supplemental.getText();
+						BufferedWriter writerOne = new BufferedWriter(new FileWriter(s, true)); 
 						
-							}
-							
+						writerOne.newLine();
+						writerOne.write(appendApplication);
+						writerOne.close();
+		
+						//append application to applications
+						appendApplication = username + ", " + name;
+						BufferedWriter writerTwo = new BufferedWriter(new FileWriter("src/Applications.txt", true));
 						
+						writerTwo.newLine();
+						writerTwo.write(appendApplication);
+						writerTwo.close();
+						//close application window, gives success message
+						setVisible(false);
+						JOptionPane.showMessageDialog(null, "Application successful", null, JOptionPane.PLAIN_MESSAGE);
 						
-					
+					}
 					catch (Exception ab) {
-						System.out.println("error" + ab);
-						
-						
+						System.out.println("error" + ab);									
 					}
 				}
 			}
@@ -122,9 +131,6 @@ public class SupplementalApplication extends JFrame {
 		JButton backButton = new JButton("Back");
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Search search = new Search();
-				search.setUsername(username);
-				search.setVisible(true);
 				setVisible(false);
 			}
 		});

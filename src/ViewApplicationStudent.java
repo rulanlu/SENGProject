@@ -6,11 +6,13 @@ import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Scanner;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -18,11 +20,13 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JTextPane;
+import javax.swing.JTextArea;
 
 /**
- * Class that allows student to view a specific previous application
+ * Class that allows student to view a specific previous application and it's information
  * Student may choose to withdraw the application
- * @author Rulan
+ * @author Rulan Lu
  *
  */
 public class ViewApplicationStudent extends JFrame {
@@ -30,6 +34,8 @@ public class ViewApplicationStudent extends JFrame {
 	private JPanel contentPane;
 	static String name;
 	static String username;
+	static String suppText;
+	static boolean supplementary;
 
 	/**
 	 * Launch the application.
@@ -72,6 +78,59 @@ public class ViewApplicationStudent extends JFrame {
 		info.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 		info.setBounds(6, 6, 101, 16);
 		contentPane.add(info);
+		
+		JLabel suppLabel = new JLabel("Supplementary Information:");
+		suppLabel.setBounds(6, 81, 195, 16);
+		contentPane.add(suppLabel);
+		
+		JTextArea suppTextArea = new JTextArea();
+		suppTextArea.setEditable(false);
+		suppTextArea.setBounds(68, 107, 620, 289);
+		contentPane.add(suppTextArea);
+		
+		//determine what to display in suppTextArea
+		try {
+			//find scholarship in database
+			Scanner in = new Scanner(new File("src/Scholarships.txt"));
+			while (in.hasNextLine()) {
+				String s = in.nextLine();
+				String[] sArray = s.split(", ");
+				if(name.equals(sArray[1])) {
+					//check to see if supplementary or not
+					if (sArray[6].equals("Yes")) {
+						supplementary = true;
+					}
+				}
+			}
+			in.close();
+		} catch (FileNotFoundException m) {
+			JOptionPane.showMessageDialog(null,"Scholarship Database Not Found", "Error", JOptionPane.ERROR_MESSAGE);
+		}
+		
+		//if scholarship needs supplementary information, display that information
+		if (supplementary) {
+			try {
+				//find scholarship in database
+				Scanner in = new Scanner(new File("src/" + name + ".txt"));
+				boolean found = false;
+				while (in.hasNextLine()) {
+					String s = in.nextLine();
+					String[] sArray = s.split(", ");
+					if(username.equals(sArray[0])) {
+						suppText = sArray[1];
+						suppTextArea.setText(suppText);
+						supplementary = false;
+					}
+				}
+				in.close();
+			} catch (FileNotFoundException m) {
+				JOptionPane.showMessageDialog(null,"Scholarship Database Not Found", "Error", JOptionPane.ERROR_MESSAGE);
+			}
+			
+		//otherwise do not display anything for supplimentary
+		} else {
+			suppTextArea.setText("N/A");
+		}
 		
 		//if student chooses to withdraw application
 		JButton applyButton = new JButton("Withdraw");
@@ -124,7 +183,7 @@ public class ViewApplicationStudent extends JFrame {
 			}
 		});
 		cancelButton.setBounds(0, 449, 106, 29);
-		contentPane.add(cancelButton);
+		contentPane.add(cancelButton);	
+		
 	}
-
 }
