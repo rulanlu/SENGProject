@@ -31,7 +31,10 @@ public class RespondToApplication extends JFrame {
 	static String scholarship;
 	static boolean supplementary = false;
 	static String suppText;
-	
+	static String GPA;
+	static double doubleGPA;
+	static boolean topContender;
+	static int studentSpot;
 
 	/**
 	 * Launch the application.
@@ -69,13 +72,8 @@ public class RespondToApplication extends JFrame {
 		scholarshipName.setBounds(6, 44, 438, 16);
 		contentPane.add(scholarshipName);
 		
-		JLabel application = new JLabel("Application:");
-		application.setFont(new Font("Lucida Grande", Font.BOLD, 13));
-		application.setBounds(6, 6, 101, 16);
-		contentPane.add(application);
-		
 		JLabel suppLabel = new JLabel("Supplementary Information:");
-		suppLabel.setBounds(6, 124, 195, 16);
+		suppLabel.setBounds(6, 128, 195, 16);
 		contentPane.add(suppLabel);
 		
 		JTextArea suppTextArea = new JTextArea();
@@ -84,7 +82,7 @@ public class RespondToApplication extends JFrame {
 		contentPane.add(suppTextArea);
 		
 		JLabel studentNameLabel = new JLabel("Student: " + username);
-		studentNameLabel.setBounds(6, 83, 237, 16);
+		studentNameLabel.setBounds(6, 72, 237, 16);
 		contentPane.add(studentNameLabel);
 		
 		JButton backButton = new JButton("Back");
@@ -98,26 +96,70 @@ public class RespondToApplication extends JFrame {
 		backButton.setBounds(6, 449, 75, 29);
 		contentPane.add(backButton);
 		
-		//determine if they are the best candidate
-		//GPA is ranked first, then their position in the scholarship database
+		//find student's GPA and position in the list
 		try {
 			Scanner x = new Scanner(new File("src/Applications.txt"));
+			int i = 0;
 			while (x.hasNextLine()) {
 				String y = x.nextLine();
 				String[] sArray = y.split(", ");
-				//get GPA
-				/**
-				 * compares the scholarship name
-				 * then should get all the GPA's 
-				 * compare if username has the highest GPA**/
 				if(scholarship.equals(sArray[1])) {
-					
+					if (username.equals(sArray[0])) {
+						GPA = sArray[2];
+						doubleGPA = Double.parseDouble(sArray[2]);
+						studentSpot = i;
+					} 
 				}
-				
+				i++;				
 			}
 			x.close();
 		} catch (FileNotFoundException ABC) {
 			JOptionPane.showMessageDialog(null, "user not found", "Error", JOptionPane.ERROR_MESSAGE);
+		}
+		
+		//check student's application against other applications
+		try {
+			Scanner x = new Scanner(new File("src/Applications.txt"));
+			int i = 0;
+			topContender = true;
+			while (x.hasNextLine()) {
+				String y = x.nextLine();
+				String[] sArray = y.split(", ");
+				//for every applicant of this scholarship
+				if(scholarship.equals(sArray[1])) {
+					//skip over student
+					if (username.equals(sArray[0])) {
+						continue;
+					//if another GPA is higher, student is not the top contender
+					} else if (Double.parseDouble(sArray[2]) > doubleGPA) {
+						topContender = false;
+						break;
+					//if there is a student with the same GPA but applied earlier, student is not the top contender
+					} else if ((Double.parseDouble(sArray[2]) == doubleGPA) && (i < studentSpot)) {
+						topContender = false;
+						break;
+					}
+				}
+				i++;				
+			}
+			x.close();
+		} catch (FileNotFoundException ABC) {
+			JOptionPane.showMessageDialog(null, "user not found", "Error", JOptionPane.ERROR_MESSAGE);
+		}
+		
+		JLabel topLabel = new JLabel();
+		topLabel.setFont(new Font("Lucida Grande", Font.BOLD, 14));
+		topLabel.setBounds(6, 6, 444, 16);
+		contentPane.add(topLabel);
+		
+		//if the student is the best candidate, show this to the coordinator
+		if (topContender) {
+			topLabel.setText("This student is the best candidate for this scholarship");
+			JButton awardButton = new JButton("Award Scholarship");
+			awardButton.setBounds(578, 449, 166, 29);
+			contentPane.add(awardButton);
+		} else {
+			topLabel.setText("This student is not the best candidate for this scholarship");
 		}
 		
 		//determine what to display in suppTextArea
@@ -162,6 +204,10 @@ public class RespondToApplication extends JFrame {
 		} else {
 			suppTextArea.setText("N/A");
 		}
+		
+		JLabel studentGpaLabel = new JLabel("GPA: " + GPA);
+		studentGpaLabel.setBounds(6, 100, 61, 16);
+		contentPane.add(studentGpaLabel);
 		
 	}
 }

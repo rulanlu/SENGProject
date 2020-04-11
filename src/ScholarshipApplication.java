@@ -103,7 +103,6 @@ public class ScholarshipApplication extends JFrame {
 		}
 		
 		avg = avg/num;
-		System.out.println(avg);
 		
 		JLabel avgGPA = new JLabel();
 		avgGPA.setBounds(6, 145, 392, 16);
