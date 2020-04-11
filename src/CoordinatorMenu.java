@@ -16,10 +16,12 @@ import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+
 /**
- * Menu for coordinators
- * Coordinators may choose to add, edit, or delete scholarships here
- * They can also view students' applications and accept/deny applications
+ * Menu for coordinators.
+ * Coordinators may choose to add, edit, or delete scholarships here. 
+ * They can also view students' applications and accept/deny these applications.
+ * 
  * @author Matt Tamkee, Rulan Lu
  *
  */
@@ -45,8 +47,7 @@ public class CoordinatorMenu extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
-	 * Sets up labels, buttons, etc.
+	 * Create the frame. Sets up labels, buttons, etc.
 	 */
 	public CoordinatorMenu() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -57,18 +58,19 @@ public class CoordinatorMenu extends JFrame {
 		setTitle("University of Saskatchewan");
 		setLocationRelativeTo(null);
 		contentPane.setLayout(null);
-		
+
 		JLabel description = new JLabel("University of Saskatchewan scholarship system.");
 		description.setFont(new Font("Lucida Grande", Font.PLAIN, 16));
 		description.setBounds(189, 6, 438, 16);
 		contentPane.add(description);
-		
-		JLabel description2 = new JLabel("Add a new scholarship, edit an existing scholarship, or view applications below.");
+
+		JLabel description2 = new JLabel(
+				"Add a new scholarship, edit an existing scholarship, or view applications below.");
 		description2.setBounds(136, 51, 547, 16);
 		contentPane.add(description2);
-		
-		//button to add a new scholarship
-		//brings up scholarship adding screen
+
+		// button to add a new scholarship
+		// brings up scholarship adding screen
 		JButton update_scholarshipButton = new JButton("Add Scholarship");
 		update_scholarshipButton.setBounds(286, 127, 166, 29);
 		update_scholarshipButton.addActionListener(new ActionListener() {
@@ -79,24 +81,25 @@ public class CoordinatorMenu extends JFrame {
 			}
 		});
 		contentPane.add(update_scholarshipButton);
-		
-		JLabel lblNewLabel = new JLabel("Add a new scholarship, edit an existing scholarship, or view applications below.");
+
+		JLabel lblNewLabel = new JLabel(
+				"Add a new scholarship, edit an existing scholarship, or view applications below.");
 		lblNewLabel.setBounds(136, 51, 491, 16);
 		contentPane.add(lblNewLabel);
-		
-		//button to edit an existing scholarship
+
+		// button to edit an existing scholarship
 		JButton editButton = new JButton("View/Edit Scholarship");
 		editButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				ViewExistingScholarships edit = new ViewExistingScholarships();
 				edit.setVisible(true);
-				setVisible(false);				
+				setVisible(false);
 			}
 		});
 		editButton.setBounds(274, 168, 194, 29);
 		contentPane.add(editButton);
-		
-		//button to view student applications
+
+		// button to view student applications
 		JButton viewAppsButton = new JButton("View Applications");
 		viewAppsButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -107,22 +110,21 @@ public class CoordinatorMenu extends JFrame {
 		});
 		viewAppsButton.setBounds(290, 209, 159, 29);
 		contentPane.add(viewAppsButton);
-		
-		//university of saskatchewan logo
+
+		// university of saskatchewan logo
 		JLabel logoLabel = new JLabel("");
 		logoLabel.setBounds(286, 268, 180, 176);
 		contentPane.add(logoLabel);
-		
+
 		BufferedImage img = null;
 		try {
 			img = ImageIO.read(new File("images/logo.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		Image image = img.getScaledInstance(logoLabel.getWidth(), logoLabel.getHeight(), Image.SCALE_SMOOTH);
 		logoLabel.setIcon(new ImageIcon(image));
-		
-		
+
 	}
 }

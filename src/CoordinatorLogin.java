@@ -17,8 +17,9 @@ import java.io.FileReader;
 import java.io.IOException;
 
 /**
- * Login class for coordinators
+ * Login class for coordinators.
  * Coordinator will login to scholarship system with username and password
+ * 
  * @author Matt Tamkee, Rulan Lu
  */
 public class CoordinatorLogin extends JFrame {
@@ -26,7 +27,6 @@ public class CoordinatorLogin extends JFrame {
 	private JPanel contentPane;
 	private JTextField username;
 	private JTextField password;
-	
 
 	/**
 	 * Launch the application.
@@ -42,12 +42,11 @@ public class CoordinatorLogin extends JFrame {
 				}
 			}
 		});
-		
+
 	}
 
 	/**
-	 * Create the frame.
-	 * Sets up labels, buttons, etc.
+	 * Create the frame. Sets up labels, buttons, etc.
 	 */
 	public CoordinatorLogin() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -59,66 +58,65 @@ public class CoordinatorLogin extends JFrame {
 		setResizable(false);
 		setTitle("University of Saskatchewan");
 		setLocationRelativeTo(null);
-		
+
 		JLabel usernameLabel = new JLabel("Username:");
 		usernameLabel.setBounds(33, 71, 73, 16);
 		contentPane.add(usernameLabel);
-		
-		
-		//enter in username
+
+		// enter in username
 		username = new JTextField();
 		username.setBounds(112, 66, 274, 26);
 		contentPane.add(username);
 		username.setColumns(10);
-		
+
 		JLabel passwordLabel = new JLabel("Password:");
 		passwordLabel.setBounds(33, 135, 73, 16);
 		contentPane.add(passwordLabel);
-		
-		//enter in password
+
+		// enter in password
 		password = new JPasswordField();
 		password.setBounds(112, 130, 274, 26);
 		contentPane.add(password);
 		password.setColumns(10);
-		
-		//if coordinator clicks login
+
+		// if coordinator clicks login
 		JButton loginButton = new JButton("Login");
 		loginButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//check to see if coordinator is in database
+				// check to see if coordinator is in database
 				try {
 					Scanner in = new Scanner(new File("src/coordinator.txt"));
 					while (in.hasNextLine()) {
 						String s = in.nextLine();
 						String[] sArray = s.split(", ");
-						//if username and password match, successful login
-						//go to coordinator menu
-						if(username.getText().equals(sArray[0]) && password.getText().equals(sArray[1])) {
+						// if username and password match, successful login
+						// go to coordinator menu
+						if (username.getText().equals(sArray[0]) && password.getText().equals(sArray[1])) {
 							CoordinatorMenu coordinator = new CoordinatorMenu();
 							coordinator.setVisible(true);
 							contentPane.setVisible(false);
 							setVisible(false);
-						    JOptionPane.showMessageDialog(null, "Login successful", null, JOptionPane.PLAIN_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Login successful", null, JOptionPane.PLAIN_MESSAGE);
 						}
-						//otherwise, failed login, must try again
-						else if((password.getText().equals("") || username.getText().equals(""))) {
+						// otherwise, failed login, must try again
+						else if ((password.getText().equals("") || username.getText().equals(""))) {
 							JOptionPane.showMessageDialog(null, "Please enter your username and password");
-						}
-						else {
+						} else {
 							JOptionPane.showMessageDialog(null, "Incorrect username and/or password");
 						}
 					}
 					in.close();
 				} catch (FileNotFoundException m) {
-				
-					JOptionPane.showMessageDialog(null,"User Database Not Found", "Error", JOptionPane.ERROR_MESSAGE);
+
+					JOptionPane.showMessageDialog(null, "User Database Not Found", "Error", JOptionPane.ERROR_MESSAGE);
 				}
-				
+
 			}
 		});
 		loginButton.setBounds(160, 215, 117, 29);
 		contentPane.add(loginButton);
-		
+
+		// welcome label
 		JLabel welcomeLabel = new JLabel("Welcome Coordinator!");
 		welcomeLabel.setBounds(160, 23, 145, 16);
 		contentPane.add(welcomeLabel);

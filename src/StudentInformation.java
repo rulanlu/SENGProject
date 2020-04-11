@@ -27,8 +27,10 @@ import java.awt.image.BufferedImage;
 import java.awt.event.ActionEvent;
 
 /**
- * Page for students to view their own information
- * Students may see their username (name), GPA, and faculty. They may also make changes to this information.
+ * Page for students to view their own information. 
+ * Students may see their username (name), GPA, and faculty. 
+ * They may also make changes to this information.
+ * 
  * @author Rulan Lu
  *
  */
@@ -42,7 +44,7 @@ public class StudentInformation extends JFrame {
 	static String oldLine;
 	static String newLine;
 	static String awarded;
-	
+
 	/**
 	 * Launch the application.
 	 */
@@ -60,20 +62,19 @@ public class StudentInformation extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
-	 * Sets up labels, buttons, etc.
+	 * Create the frame. Sets up labels, buttons, etc.
 	 */
 	public StudentInformation(String suser) {
 		username = suser;
-		
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(200, 200, 450, 300);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		
-		//get student information from the database
+
+		// get student information from the database
 		try {
 			Scanner in = new Scanner(new File("src/student.txt"));
 			while (in.hasNextLine()) {
@@ -93,23 +94,23 @@ public class StudentInformation extends JFrame {
 			}
 			in.close();
 		} catch (FileNotFoundException m) {
-			JOptionPane.showMessageDialog(null,"Student Database Not Found", "Error", JOptionPane.ERROR_MESSAGE);
-	    }
-		
-		//shows all student information
+			JOptionPane.showMessageDialog(null, "Student Database Not Found", "Error", JOptionPane.ERROR_MESSAGE);
+		}
+
+		// shows all student information
 		JLabel nameLabel = new JLabel("Student Name: " + username);
 		nameLabel.setBounds(9, 6, 216, 16);
 		contentPane.add(nameLabel);
-		
+
 		JLabel gpaLabel = new JLabel("GPA: " + GPA);
 		gpaLabel.setBounds(9, 52, 146, 16);
 		contentPane.add(gpaLabel);
-		
+
 		JLabel facLabel = new JLabel("Faculty: " + faculty);
 		facLabel.setBounds(9, 98, 227, 16);
 		contentPane.add(facLabel);
-		
-		//if stu0, 130ants to edit their information, go to editing page
+
+		// if student wants to edit their information, go to editing page
 		JButton editName = new JButton("Edit");
 		editName.setBounds(9, 128, 91, 29);
 		editName.addActionListener(new ActionListener() {
@@ -120,8 +121,8 @@ public class StudentInformation extends JFrame {
 			}
 		});
 		contentPane.add(editName);
-		
-		//takes student back to the student menu
+
+		// takes student back to the student menu
 		JButton backButton = new JButton("Back");
 		backButton.setBounds(0, 247, 67, 25);
 		backButton.addActionListener(new ActionListener() {
@@ -132,7 +133,8 @@ public class StudentInformation extends JFrame {
 			}
 		});
 		contentPane.add(backButton);
-		
+
+		// if student is done editing, go back to student menu
 		JButton confirmButton = new JButton("Finish");
 		confirmButton.setBounds(362, 247, 82, 25);
 		confirmButton.addActionListener(new ActionListener() {
@@ -143,23 +145,24 @@ public class StudentInformation extends JFrame {
 			}
 		});
 		contentPane.add(confirmButton);
-		
+
 		JLabel studentLabel = new JLabel("");
 		studentLabel.setBounds(248, 6, 181, 169);
 		contentPane.add(studentLabel);
-		
+
+		// school related images
 		BufferedImage img = null;
 		try {
 			img = ImageIO.read(new File("images/student.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		Image image = img.getScaledInstance(studentLabel.getWidth(), studentLabel.getHeight(), Image.SCALE_SMOOTH);
 		studentLabel.setIcon(new ImageIcon(image));
-		
+
 		setLocationRelativeTo(null);
 		setTitle("University of Saskatchewan");
-		
+
 	}
 }
