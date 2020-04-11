@@ -41,13 +41,14 @@ public class SupplementalApplication extends JFrame {
 	static String name;
 	static String ID;
 	static String username;
+	static String GPA;
 	
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					SupplementalApplication frame = new SupplementalApplication(name, ID, username);
+					SupplementalApplication frame = new SupplementalApplication(name, ID, username, GPA);
 					
 					frame.setVisible(true);
 					
@@ -57,11 +58,12 @@ public class SupplementalApplication extends JFrame {
 			}
 		});
 	}
-	public SupplementalApplication(String sname, String sid, String suser) {
+	public SupplementalApplication(String sname, String sid, String suser, String sGPA) {
 		
 		name = sname;
 		ID = sid;
 		username = suser;
+		GPA = sGPA;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(200, 200, 750, 500);
@@ -114,7 +116,7 @@ public class SupplementalApplication extends JFrame {
 						}
 		
 						//append application to applications
-						appendApplication = username + ", " + name;
+						appendApplication = username + ", " + name + ", " + GPA;
 						BufferedWriter writerTwo = new BufferedWriter(new FileWriter("src/Applications.txt", true));
 						
 						writerTwo.newLine();

@@ -93,22 +93,8 @@ public class ScholarshipApplication extends JFrame {
 				String[] sArray = s.split(", ");
 				//find all applications for scholarship
 				if (sArray[1].equals(name)) {
-					try {
-						//student information for each application
-						Scanner input = new Scanner(new File("src/student.txt"));
-						while (input.hasNextLine()) {
-							String str = input.nextLine();
-							String[] sArray2 = str.split(", ");
-							if(sArray[0].equals(sArray2[0])) {
-								//add GPA to average
-								avg += Double.parseDouble(sArray2[2]);
-								num++;
-							}
-						}
-						input.close();
-					} catch (FileNotFoundException m) {
-						JOptionPane.showMessageDialog(null,"User Database Not Found", "Error", JOptionPane.ERROR_MESSAGE);
-					}
+					avg += Double.parseDouble(sArray[2]);
+					num++;
 				}
 			}
 		}
@@ -208,7 +194,7 @@ public class ScholarshipApplication extends JFrame {
 						if (exists == false) {							
 							//check to see if scholarship need supplementary application or no
 							if (supplemental.equals("Yes")) {
-								SupplementalApplication supplemental = new SupplementalApplication(name, ID, username);
+								SupplementalApplication supplemental = new SupplementalApplication(name, ID, username, Double.toString(studentGPA));
 								supplemental.setVisible(true);
 								setVisible(false);
 							} else {
