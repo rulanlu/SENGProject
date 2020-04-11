@@ -44,6 +44,7 @@ public class ScholarshipApplication extends JFrame {
 	static String supplemental;
 	private String studentFaculty;
 	private double studentGPA;
+	private String studentAwarded;
 	private double avg = 0;
 	private int num = 0;
     
@@ -160,6 +161,7 @@ public class ScholarshipApplication extends JFrame {
 						if(username.equals(sArray[0])) {
 							studentGPA = Double.parseDouble(sArray[2]);
 							studentFaculty = sArray[3];
+							studentAwarded = sArray[4];
 						}
 					}
 					in.close();
@@ -171,6 +173,8 @@ public class ScholarshipApplication extends JFrame {
 					JOptionPane.showMessageDialog(null, "You are not eligible for this scholarship (GPA)", null, JOptionPane.PLAIN_MESSAGE);
 				} else if (!(studentFaculty.equals(faculty)) && !(faculty.equals("All"))) {
 					JOptionPane.showMessageDialog(null, "You are not eligible for this scholarship (Faculty)", null, JOptionPane.PLAIN_MESSAGE);
+				} else if (studentAwarded.equals("Yes")) {
+					JOptionPane.showMessageDialog(null, "You have already been awarded a scholarship! Each student can only be awarded one scholarship max", null, JOptionPane.PLAIN_MESSAGE);
 				} else {
 				
 					try {
