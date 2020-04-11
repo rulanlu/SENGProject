@@ -1,10 +1,12 @@
 Student Name, Scholarship Name, GPA
-Rulan, Rulan Scholarship, 3.70
-Rulan, Matt Scholarship, 3.70
+Rulan, Rulan Scholarship, 3.80
+Rulan, Matt Scholarship, 3.80
 Susanah, Matt Scholarship, 3.40
 Susanah, Alexander Rutherford, 3.40
 Susanah, Continuing Students Award, 3.40
 Susanah, Governor General's Award, 3.40
 Test, Alexander Rutherford, 3.7
-Rulan, BRAR Memorial Scholarship, 3.7
-Rulan, Alexander Rutherford, 3.7
+Rulan, BRAR Memorial Scholarship, 3.80
+Rulan, Alexander Rutherford, 3.80
+
+Rulan, Governor General's Award, 3.80

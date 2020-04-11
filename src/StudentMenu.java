@@ -28,25 +28,7 @@ import java.awt.Image;
 public class StudentMenu extends JFrame {
 
 	private JPanel contentPane;
-	private String username;
-	private String password;
-	
-	//getters and setters
-	public String getUsername() {
-		return username;
-	}
-	
-	public void setUsername(String user) {
-		this.username = user;
-	}
-	
-	public String getPassword() {
-		return password;
-	}
-	
-	public void setPassword(String pass) {
-		this.password = pass;
-	}
+	static String username;
 
 	/**
 	 * Launch the application.
@@ -55,7 +37,7 @@ public class StudentMenu extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					StudentMenu frame = new StudentMenu();
+					StudentMenu frame = new StudentMenu(username);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -68,7 +50,9 @@ public class StudentMenu extends JFrame {
 	 * Create the frame.
 	 * Sets up labels, buttons, etc.
 	 */
-	public StudentMenu() {
+	public StudentMenu(String suser) {
+		username = suser;
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(200, 200, 750, 500);
 		contentPane = new JPanel();
@@ -117,6 +101,7 @@ public class StudentMenu extends JFrame {
 		studentInformation.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				StudentInformation information = new StudentInformation(username);
+				System.out.println(username);
 				information.setVisible(true);
 				setVisible(false);
 			}

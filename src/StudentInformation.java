@@ -41,7 +41,8 @@ public class StudentInformation extends JFrame {
 	static String faculty;
 	static String oldLine;
 	static String newLine;
-
+	static String awarded;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -78,13 +79,16 @@ public class StudentInformation extends JFrame {
 			while (in.hasNextLine()) {
 				String s = in.nextLine();
 				String[] sArray = s.split(", ");
-				password = sArray[1];
-				if (sArray.length == 2) {
-					GPA = "";
-					faculty = "";
-				} else {
-					GPA = sArray[2];
-					faculty = sArray[3];
+				if (username.equals(sArray[0])) {
+					password = sArray[1];
+					if (sArray.length == 2) {
+						GPA = "";
+						faculty = "";
+					} else {
+						GPA = sArray[2];
+						faculty = sArray[3];
+						awarded = sArray[4];
+					}
 				}
 			}
 			in.close();
@@ -110,7 +114,7 @@ public class StudentInformation extends JFrame {
 		editName.setBounds(9, 128, 91, 29);
 		editName.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				EditInformation edit = new EditInformation(username, password, GPA, faculty);
+				EditInformation edit = new EditInformation(username, password, GPA, faculty, awarded);
 				edit.setVisible(true);
 				setVisible(false);
 			}
@@ -122,8 +126,7 @@ public class StudentInformation extends JFrame {
 		backButton.setBounds(0, 247, 67, 25);
 		backButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				StudentMenu student = new StudentMenu();
-				student.setUsername(username);
+				StudentMenu student = new StudentMenu(username);
 				student.setVisible(true);
 				setVisible(false);
 			}
@@ -134,8 +137,7 @@ public class StudentInformation extends JFrame {
 		confirmButton.setBounds(362, 247, 82, 25);
 		confirmButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				StudentMenu student = new StudentMenu();
-				student.setUsername(username);
+				StudentMenu student = new StudentMenu(username);
 				student.setVisible(true);
 				setVisible(false);
 			}

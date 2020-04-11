@@ -166,8 +166,7 @@ public class Search extends JFrame {
       JButton backButton = new JButton("Back");
       backButton.addActionListener(new ActionListener() {
       	public void actionPerformed(ActionEvent e) {
-			StudentMenu menu = new StudentMenu();
-			menu.setUsername(username);
+			StudentMenu menu = new StudentMenu(username);
 			menu.setVisible(true);
 			setVisible(false);
       	}

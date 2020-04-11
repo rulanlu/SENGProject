@@ -23,26 +23,7 @@ import java.io.FileNotFoundException;
 public class StudentLogin extends JFrame {
 
 	private JPanel contentPane;
-	public String usernameText;
-	private String passwordText;
 	protected Object student;
-	
-	//getters nad setters for student information
-	public String getUser() {
-		return usernameText;
-	}
-	
-	public void setUser(String user) {
-		this.usernameText = user;
-	}
-
-	public String getPass() {
-		return passwordText;
-	}
-	
-	public void setPass(String pass) {
-		this.passwordText = pass;
-	}
 	
 	/**
 	 * Launch the application.
@@ -111,11 +92,7 @@ public class StudentLogin extends JFrame {
 						//go to student menu
 						if(username.getText().equals(sArray[0]) && password.getText().equals(sArray[1])) {
 							found = true;
-							setUser(username.getText());
-							setPass(password.getText());
-							StudentMenu student = new StudentMenu();
-							student.setUsername(usernameText);
-							student.setPassword(passwordText);
+							StudentMenu student = new StudentMenu(username.getText());
 							student.setVisible(true);
 							setVisible(false);
 							JOptionPane.showMessageDialog(null, "Login successful", null, JOptionPane.PLAIN_MESSAGE);

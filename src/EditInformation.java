@@ -34,6 +34,7 @@ public class EditInformation extends JFrame {
 	static String password;
 	static String GPA;
 	static String faculty;
+	static String awarded;
 	private JTextField usernameField;
 	private JTextField gpaField;
 	private JComboBox facField;
@@ -45,7 +46,7 @@ public class EditInformation extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					EditInformation frame = new EditInformation(username, password, GPA, faculty);
+					EditInformation frame = new EditInformation(username, password, GPA, faculty, awarded);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -58,11 +59,12 @@ public class EditInformation extends JFrame {
 	 * Create the frame.
 	 * Sets up labels, buttons, etc.
 	 */
-	public EditInformation(String suser, String spass, String sgpa, String sfac) {
+	public EditInformation(String suser, String spass, String sgpa, String sfac, String sawarded) {
 		username = suser;
 		password = spass;
 		GPA = sgpa;
 		faculty = sfac;
+		awarded = sawarded;
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(200, 200, 450, 300);
@@ -131,7 +133,7 @@ public class EditInformation extends JFrame {
 			                if (sArray.length > 0) {
 			                	//if line containing student is found, edit it
 			                    if (sArray[0].equals(username)) {
-			                        String newLine = usernameField.getText() + ", " + password + ", " + gpaField.getText() + ", " + facField.getSelectedItem().toString();
+			                        String newLine = usernameField.getText() + ", " + password + ", " + gpaField.getText() + ", " + facField.getSelectedItem().toString() + ", " + awarded;
 			                        fileContent.append(newLine);
 			                        fileContent.append("\n");
 			                    //otherwise keep it as it is
@@ -159,7 +161,7 @@ public class EditInformation extends JFrame {
 				                if (sArray2.length > 0) {
 				                	//if line containing student is found, edit it
 				                    if (sArray2[0].equals(username)) {
-				                        String newLine2 = usernameField.getText() + ", " + sArray2[1];
+				                        String newLine2 = usernameField.getText() + ", " + sArray2[1] + ", " + gpaField.getText();
 				                        fileContent2.append(newLine2);
 				                        fileContent2.append("\n");
 				                    //otherwise keep it as it is
