@@ -44,6 +44,8 @@ public class ScholarshipApplication extends JFrame {
 	static String supplemental;
 	private String studentFaculty;
 	private double studentGPA;
+	private double avg = 0;
+	private int num = 0;
     
 	/**
 	 * Launch the application.
@@ -83,6 +85,51 @@ public class ScholarshipApplication extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		//finds the GPA of all applications of specific scholarship
+		try {			
+			Scanner in = new Scanner(new File("src/Applications.txt"));
+			while (in.hasNextLine()) {
+				String s = in.nextLine();
+				String[] sArray = s.split(", ");
+				//find all applications for scholarship
+				if (sArray[1].equals(name)) {
+					try {
+						//student information for each application
+						Scanner input = new Scanner(new File("src/student.txt"));
+						while (input.hasNextLine()) {
+							String str = input.nextLine();
+							String[] sArray2 = str.split(", ");
+							if(sArray[0].equals(sArray2[0])) {
+								//add GPA to average
+								avg += Double.parseDouble(sArray2[2]);
+								num++;
+							}
+						}
+						input.close();
+					} catch (FileNotFoundException m) {
+						JOptionPane.showMessageDialog(null,"User Database Not Found", "Error", JOptionPane.ERROR_MESSAGE);
+					}
+				}
+			}
+		}
+		catch (IOException m) {
+			System.out.println("error" + m);
+		}
+		
+		avg = avg/num;
+		System.out.println(avg);
+		
+		JLabel avgGPA = new JLabel();
+		avgGPA.setBounds(6, 145, 392, 16);
+		contentPane.add(avgGPA);
+		
+		//set average GPA to show student
+		if (num > 0) {
+			avgGPA.setText("Average GPA of Applicants: " + avg);
+		} else {
+			avgGPA.setText("Average GPA of Applicants: No Applicants Yet");
+		}
+		
 	    JLabel scholarshipName = new JLabel("Name: " + name);
 		scholarshipName.setBounds(6, 60, 438, 16);
 		contentPane.add(scholarshipName);
@@ -101,15 +148,15 @@ public class ScholarshipApplication extends JFrame {
 		contentPane.add(info);
 		
 		JLabel scholarshipGPA = new JLabel("Minimum GPA: " + GPA);
-		scholarshipGPA.setBounds(6, 117, 438, 16);
+		scholarshipGPA.setBounds(6, 117, 351, 16);
 		contentPane.add(scholarshipGPA);
 		
 		JLabel amountLabel = new JLabel("Amount: " + amount);
-		amountLabel.setBounds(6, 145, 438, 16);
+		amountLabel.setBounds(6, 171, 438, 16);
 		contentPane.add(amountLabel);
 		
 		JLabel facLabel = new JLabel("Faculty: " + faculty);
-		facLabel.setBounds(6, 173, 438, 16);
+		facLabel.setBounds(6, 199, 438, 16);
 		contentPane.add(facLabel);
 		
 		setLocationRelativeTo(null);
