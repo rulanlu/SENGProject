@@ -143,7 +143,7 @@ public class ScholarshipApplication extends JFrame {
 				
 					try {
 						//check to see if student has applied for that scholarship already
-						String appendApplication = username + ", " + name;
+						String appendApplication = username + ", " + name + ", " + studentGPA;
 						
 						boolean exists = false;
 						Scanner in = new Scanner(new File("src/Applications.txt"));

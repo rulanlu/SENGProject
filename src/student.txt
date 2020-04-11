@@ -1,3 +1,5 @@
-Student Name, Password, GPA, Faculty
-Rulan, 1234, 3.70, Science
-Test, 1234, 3.80, Science
+Student Name, Password, GPA, Faculty, Awarded,
+Rulan, 1234, 3.70, Science, Yes
+Test, 1234, 3.80, Science, No
+Matt, 4321, 2.4, Science, No
+Susanah, 4321, 3.40, Science, No

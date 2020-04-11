@@ -3,6 +3,8 @@ import java.awt.EventQueue;
 import java.awt.Font;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 import javax.swing.JFrame;
@@ -29,6 +31,7 @@ public class RespondToApplication extends JFrame {
 	static String scholarship;
 	static boolean supplementary = false;
 	static String suppText;
+	
 
 	/**
 	 * Launch the application.
@@ -94,6 +97,28 @@ public class RespondToApplication extends JFrame {
 		});
 		backButton.setBounds(6, 449, 75, 29);
 		contentPane.add(backButton);
+		
+		//determine if they are the best candidate
+		//GPA is ranked first, then their position in the scholarship database
+		try {
+			Scanner x = new Scanner(new File("src/Applications.txt"));
+			while (x.hasNextLine()) {
+				String y = x.nextLine();
+				String[] sArray = y.split(", ");
+				//get GPA
+				/**
+				 * compares the scholarship name
+				 * then should get all the GPA's 
+				 * compare if username has the highest GPA**/
+				if(scholarship.equals(sArray[1])) {
+					
+				}
+				
+			}
+			x.close();
+		} catch (FileNotFoundException ABC) {
+			JOptionPane.showMessageDialog(null, "user not found", "Error", JOptionPane.ERROR_MESSAGE);
+		}
 		
 		//determine what to display in suppTextArea
 		try {
