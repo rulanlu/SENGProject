@@ -157,7 +157,6 @@ public class StudentMenu extends JFrame {
 		studentInformation.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				StudentInformation information = new StudentInformation(username);
-				System.out.println(username);
 				information.setVisible(true);
 				setVisible(false);
 			}
