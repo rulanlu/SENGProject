@@ -95,10 +95,12 @@ public class ViewApplicationStudent extends JFrame {
 			while (in.hasNextLine()) {
 				String s = in.nextLine();
 				String[] sArray = s.split(", ");
-				if (name.equals(sArray[1])) {
-					// check to see if supplementary or not
-					if (sArray[6].equals("Yes")) {
-						supplementary = true;
+				if (sArray.length > 1) {
+					if (name.equals(sArray[1])) {
+						// check to see if supplementary or not
+						if (sArray[6].equals("Yes")) {
+							supplementary = true;
+						}
 					}
 				}
 			}
@@ -116,10 +118,12 @@ public class ViewApplicationStudent extends JFrame {
 				while (in.hasNextLine()) {
 					String s = in.nextLine();
 					String[] sArray = s.split(", ");
-					if (username.equals(sArray[0])) {
-						suppText = sArray[1];
-						suppTextArea.setText(suppText);
-						supplementary = false;
+					if (sArray.length > 1) {
+						if (username.equals(sArray[0])) {
+							suppText = sArray[1];
+							suppTextArea.setText(suppText);
+							supplementary = false;
+						}
 					}
 				}
 				in.close();

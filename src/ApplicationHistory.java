@@ -87,20 +87,22 @@ public class ApplicationHistory extends JFrame {
 			while (in.hasNextLine()) {
 				String s = in.nextLine();
 				String[] sArray = s.split(", ");
-				// header information
-				if (count == 0) {
-					columns[0] = sArray[0];
-					columns[1] = sArray[1];
-				}
-				// actual data, display all applications for specific student
-				else {
-					if (sArray[0].equals(username)) {
-						data[i][0] = sArray[0];
-						data[i][1] = sArray[1];
-						i++;
+				if (sArray.length > 1) {
+					// header information
+					if (count == 0) {
+						columns[0] = sArray[0];
+						columns[1] = sArray[1];
 					}
+					// actual data, display all applications for specific student
+					else {
+						if (sArray[0].equals(username)) {
+							data[i][0] = sArray[0];
+							data[i][1] = sArray[1];
+							i++;
+						}
+					}
+					count++;
 				}
-				count++;
 			}
 			in.close();
 		} catch (FileNotFoundException m) {

@@ -80,15 +80,17 @@ public class StudentInformation extends JFrame {
 			while (in.hasNextLine()) {
 				String s = in.nextLine();
 				String[] sArray = s.split(", ");
-				if (username.equals(sArray[0])) {
-					password = sArray[1];
-					if (sArray.length == 2) {
-						GPA = "";
-						faculty = "";
-					} else {
-						GPA = sArray[2];
-						faculty = sArray[3];
-						awarded = sArray[4];
+				if (sArray.length > 1) {
+					if (username.equals(sArray[0])) {
+						password = sArray[1];
+						if (sArray.length == 2) {
+							GPA = "";
+							faculty = "";
+						} else {
+							GPA = sArray[2];
+							faculty = sArray[3];
+							awarded = sArray[4];
+						}
 					}
 				}
 			}

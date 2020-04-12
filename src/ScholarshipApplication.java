@@ -94,10 +94,12 @@ public class ScholarshipApplication extends JFrame {
 			while (in.hasNextLine()) {
 				String s = in.nextLine();
 				String[] sArray = s.split(", ");
-				// find all applications for scholarship
-				if (sArray[1].equals(name)) {
-					avg += Double.parseDouble(sArray[2]);
-					num++;
+				if (sArray.length > 1) {
+					// find all applications for scholarship
+					if (sArray[1].equals(name)) {
+						avg += Double.parseDouble(sArray[2]);
+						num++;
+					}
 				}
 			}
 		} catch (IOException m) {
@@ -159,10 +161,12 @@ public class ScholarshipApplication extends JFrame {
 					while (in.hasNextLine()) {
 						String s = in.nextLine();
 						String[] sArray = s.split(", ");
-						if (username.equals(sArray[0])) {
-							studentGPA = Double.parseDouble(sArray[2]);
-							studentFaculty = sArray[3];
-							studentAwarded = sArray[4];
+						if (sArray.length > 1) {
+							if (username.equals(sArray[0])) {
+								studentGPA = Double.parseDouble(sArray[2]);
+								studentFaculty = sArray[3];
+								studentAwarded = sArray[4];
+							}
 						}
 					}
 					in.close();

@@ -80,28 +80,30 @@ public class ViewExistingScholarships extends JFrame {
 			while (in.hasNextLine()) {
 				String s = in.nextLine();
 				String[] sArray = s.split(", ");
-				// header information
-				if (count == 0) {
-					columns[0] = sArray[0];
-					columns[1] = sArray[1];
-					columns[2] = sArray[2];
-					columns[3] = sArray[3];
-					columns[4] = sArray[4];
-					columns[5] = sArray[5];
-					columns[6] = sArray[6];
+				if (sArray.length > 1) {
+					// header information
+					if (count == 0) {
+						columns[0] = sArray[0];
+						columns[1] = sArray[1];
+						columns[2] = sArray[2];
+						columns[3] = sArray[3];
+						columns[4] = sArray[4];
+						columns[5] = sArray[5];
+						columns[6] = sArray[6];
+					}
+					// actual data
+					else {
+						data[i][0] = sArray[0];
+						data[i][1] = sArray[1];
+						data[i][2] = sArray[2];
+						data[i][3] = sArray[3];
+						data[i][4] = sArray[4];
+						data[i][5] = sArray[5];
+						data[i][6] = sArray[6];
+						i++;
+					}
+					count++;
 				}
-				// actual data
-				else {
-					data[i][0] = sArray[0];
-					data[i][1] = sArray[1];
-					data[i][2] = sArray[2];
-					data[i][3] = sArray[3];
-					data[i][4] = sArray[4];
-					data[i][5] = sArray[5];
-					data[i][6] = sArray[6];
-					i++;
-				}
-				count++;
 			}
 			in.close();
 		} catch (FileNotFoundException m) {
@@ -133,7 +135,7 @@ public class ViewExistingScholarships extends JFrame {
 					EditScholarship edit = new EditScholarship(table.getValueAt(i, 1).toString(),
 							table.getValueAt(i, 2).toString(), table.getValueAt(i, 0).toString(),
 							table.getValueAt(i, 3).toString(), table.getValueAt(i, 4).toString().substring(1),
-							table.getValueAt(i, 5).toString());
+							table.getValueAt(i, 5).toString(), table.getValueAt(i, 6).toString());
 					edit.setVisible(true);
 					edit.setTitle(text);
 					setVisible(false);

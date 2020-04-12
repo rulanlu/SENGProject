@@ -133,7 +133,7 @@ public class EditInformation extends JFrame {
 
 						while ((line = br.readLine()) != null) {
 							String sArray[] = line.split(", ");
-							if (sArray.length > 0) {
+							if (sArray.length > 1) {
 								// if line containing student is found, edit it
 								if (sArray[0].equals(username)) {
 									String newLine = usernameField.getText() + ", " + password + ", "
@@ -163,7 +163,7 @@ public class EditInformation extends JFrame {
 
 							while ((line2 = br2.readLine()) != null) {
 								String sArray2[] = line2.split(", ");
-								if (sArray2.length > 0) {
+								if (sArray2.length > 1) {
 									// if line containing student is found, edit it
 									if (sArray2[0].equals(username)) {
 										String newLine2 = usernameField.getText() + ", " + sArray2[1] + ", "

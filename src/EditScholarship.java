@@ -42,6 +42,7 @@ public class EditScholarship extends JFrame {
 	static String GPA;
 	static String amount;
 	static String faculty;
+	static String supplementary;
 	private JTextField nameField;
 	private JTextField dateField;
 	private JTextField gpaField;
@@ -55,7 +56,7 @@ public class EditScholarship extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					EditScholarship frame = new EditScholarship(name, date, ID, GPA, amount, faculty);
+					EditScholarship frame = new EditScholarship(name, date, ID, GPA, amount, faculty, supplementary);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -67,7 +68,7 @@ public class EditScholarship extends JFrame {
 	/**
 	 * Create the frame. Sets up labels, buttons, etc.
 	 */
-	public EditScholarship(String sname, String sdate, String sid, String sgpa, String samount, String sfac) {
+	public EditScholarship(String sname, String sdate, String sid, String sgpa, String samount, String sfac, String supp) {
 		// initialize variables
 		name = sname;
 		date = sdate;
@@ -75,6 +76,7 @@ public class EditScholarship extends JFrame {
 		GPA = sgpa;
 		amount = samount;
 		faculty = sfac;
+		supplementary = supp;
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 500, 400);
@@ -179,12 +181,12 @@ public class EditScholarship extends JFrame {
 
 						while ((line = br.readLine()) != null) {
 							String sArray[] = line.split(", ");
-							if (sArray.length > 0) {
+							if (sArray.length > 1) {
 								// if line containing scholarship is found, edit it
 								if (sArray[0].equals(ID)) {
 									String newLine = ID + ", " + nameField.getText() + ", " + dateField.getText() + ", "
 											+ gpaField.getText() + ", $" + amountField.getText() + ", "
-											+ facultyCombo.getSelectedItem().toString();
+											+ facultyCombo.getSelectedItem().toString() + ", " + supplementary;
 									fileContent.append(newLine);
 									fileContent.append("\n");
 									// otherwise keep it as it is
@@ -209,7 +211,7 @@ public class EditScholarship extends JFrame {
 
 							while ((line2 = br2.readLine()) != null) {
 								String sArray2[] = line2.split(", ");
-								if (sArray2.length > 0) {
+								if (sArray2.length > 1) {
 									// if line containing scholarship is found, edit it
 									if (sArray2[1].equals(name)) {
 										String newLine2 = sArray2[0] + ", " + nameField.getText();
