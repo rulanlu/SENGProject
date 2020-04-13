@@ -1,3 +1,1 @@
 Student, Scholarship
-Test, Test
-Rulan, Matt Scholarship

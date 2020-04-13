@@ -2,3 +2,7 @@ Student Name, Scholarship Name, GPA
 Susanah, Alexander Rutherford, 3.40
 Susanah, Continuing Students Award, 3.40
 Susanah, Governor General's Award, 3.40
+Rulan, Alexander Rutherford, 3.70
+Rulan, Continuing Students Award, 3.70
+Rulan, Governor General's Award, 3.70
+Rulan, President's Scholarship, 3.70

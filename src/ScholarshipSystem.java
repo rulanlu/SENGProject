@@ -179,7 +179,7 @@ public class ScholarshipSystem extends JFrame {
 					try {
 						long lineCounter = Files.lines(Paths.get("src/Scholarships.txt")).count();
 						int unique_ID = (int) lineCounter;
-						int scholarship_ID = unique_ID;
+						int scholarship_ID = unique_ID + 1;
 
 						// checks to see if scholarship requires supplementary application or no
 						String appendScholarship;
