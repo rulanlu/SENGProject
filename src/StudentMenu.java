@@ -84,7 +84,7 @@ public class StudentMenu extends JFrame {
 				String[] sArray = y.split(", ");
 				if (sArray.length > 1) {
 					if (username.equals(sArray[0])) {
-						if (sArray[3].equals("Yes")) {
+						if (sArray[4].equals("Yes")) {
 							// check to see which scholarship student has been awarded
 							try {
 								// find student in database

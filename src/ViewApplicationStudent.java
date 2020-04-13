@@ -37,6 +37,7 @@ public class ViewApplicationStudent extends JFrame {
 	static String username;
 	static String suppText;
 	static boolean supplementary;
+	static String GPA;
 
 	/**
 	 * Launch the application.
@@ -88,6 +89,25 @@ public class ViewApplicationStudent extends JFrame {
 		suppTextArea.setBounds(68, 107, 620, 289);
 		contentPane.add(suppTextArea);
 
+		// retrieve student's GPA
+		try {
+			// find student in database
+			Scanner in = new Scanner(new File("src/student.txt"));
+			while (in.hasNextLine()) {
+				String s = in.nextLine();
+				String[] sArray = s.split(", ");
+				if (sArray.length > 1) {
+					if (username.equals(sArray[0])) {
+						GPA = sArray[2];
+						System.out.println(GPA);
+					}
+				}
+			}
+			in.close();
+		} catch (FileNotFoundException m) {
+			JOptionPane.showMessageDialog(null, "Scholarship Database Not Found", "Error", JOptionPane.ERROR_MESSAGE);
+		}
+		
 		// determine whether scholarship has supplementary information or not
 		try {
 			// find scholarship in database
@@ -149,7 +169,7 @@ public class ViewApplicationStudent extends JFrame {
 					BufferedReader reader = new BufferedReader(new FileReader(applicationsFile));
 					BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
 
-					String lineToRemove = username + ", " + name;
+					String lineToRemove = username + ", " + name + ", " + GPA;
 					String currentLine;
 
 					//remove line with application on it

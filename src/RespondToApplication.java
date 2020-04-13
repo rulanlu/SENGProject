@@ -193,7 +193,7 @@ public class RespondToApplication extends JFrame {
 							if (sArray2.length > 1) {
 								// if line containing student is found, edit it
 								if (sArray2[0].equals(username)) {
-									String newLine2 = sArray2[0] + ", " + sArray2[1] + ", " + sArray2[2] + ", Yes";
+									String newLine2 = sArray2[0] + ", " + sArray2[1] + ", " + sArray2[2] + ", " + sArray2[3] +  ", Yes";
 									fileContent2.append(newLine2);
 									fileContent2.append("\n");
 									// otherwise keep it as it is
