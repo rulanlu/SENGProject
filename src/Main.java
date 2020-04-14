@@ -40,6 +40,14 @@ public class Main {
 			}
 		});
 	}
+	
+	public String status(String condition){
+		if(condition.equals("Status: Working"))
+			return "Status: Working";
+		else 
+			return "Status: Not Working";
+	}
+
 
 	/**
 	 * Create the application.
