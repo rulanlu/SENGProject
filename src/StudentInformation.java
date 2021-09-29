@@ -34,11 +34,9 @@ import java.awt.event.ActionEvent;
  * @author Rulan Lu
  *
  */
-public class StudentInformation extends JFrame {
+public class StudentInformation extends StudentLoginInformation {
 
 	private JPanel contentPane;
-	static String username;
-	static String password;
 	static String GPA;
 	static String faculty;
 	static String oldLine;
@@ -65,6 +63,7 @@ public class StudentInformation extends JFrame {
 	 * Create the frame. Sets up labels, buttons, etc.
 	 */
 	public StudentInformation(String suser) {
+		super();
 		username = suser;
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

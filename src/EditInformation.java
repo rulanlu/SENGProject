@@ -194,7 +194,7 @@ public class EditInformation extends JFrame {
 					username = usernameField.getText();
 					GPA = gpaField.getText();
 					faculty = facField.getSelectedItem().toString();
-					StudentInformation information = new StudentInformation(username);
+					StudentLoginInformation information = new StudentInformation(username);
 					information.setVisible(true);
 					setVisible(false);
 					JOptionPane.showMessageDialog(null, "Change successful", null, JOptionPane.PLAIN_MESSAGE);
@@ -209,7 +209,7 @@ public class EditInformation extends JFrame {
 		JButton back = new JButton("Back");
 		back.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				StudentInformation information = new StudentInformation(username);
+				StudentLoginInformation information = new StudentInformation(username);
 				information.setVisible(true);
 				setVisible(false);
 			}

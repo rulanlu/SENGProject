@@ -156,7 +156,7 @@ public class StudentMenu extends JFrame {
 		JButton studentInformation = new JButton("Account Information");
 		studentInformation.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				StudentInformation information = new StudentInformation(username);
+				StudentLoginInformation information = new StudentInformation(username);
 				information.setVisible(true);
 				setVisible(false);
 			}
