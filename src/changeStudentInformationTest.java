@@ -4,12 +4,7 @@ import org.junit.Assert;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileInputStream;
-import java.io.FileWriter;
-import java.io.InputStreamReader;
-import java.util.Arrays;
+
 class changeStudentInformationTest {
 
 	@BeforeAll
