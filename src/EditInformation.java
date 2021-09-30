@@ -127,12 +127,12 @@ public class EditInformation extends JFrame {
 					// open the database and change the information for the student
 //					try {
 						changeStudentInformation student = new changeStudentInformation();
-						
+						changeStudentEligibility sEligible = new changeStudentEligibility();
 						String usernameContent = usernameField.getText();
 						String gpaContent = gpaField.getText();
 						String faculty = facField.getSelectedItem().toString();
 						student.changeInformation(username, usernameContent, password, gpaContent, faculty, sawarded);
-						
+						sEligible.changeEligibility(username, usernameContent, gpaContent);
 						
 //						FileInputStream fstream = new FileInputStream("src/student.txt");
 //						BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
@@ -163,37 +163,37 @@ public class EditInformation extends JFrame {
 //						out.close();
 
 						// change student information in application database as well
-						try {
-							FileInputStream fstream2 = new FileInputStream("src/Applications.txt");
-							BufferedReader br2 = new BufferedReader(new InputStreamReader(fstream2));
-							String line2;
-							StringBuilder fileContent2 = new StringBuilder();
-
-							while ((line2 = br2.readLine()) != null) {
-								String sArray2[] = line2.split(", ");
-								if (sArray2.length > 1) {
-									// if line containing student is found, edit it
-									if (sArray2[0].equals(username)) {
-										String newLine2 = usernameField.getText() + ", " + sArray2[1] + ", "
-												+ gpaField.getText();
-										fileContent2.append(newLine2);
-										fileContent2.append("\n");
-										// otherwise keep it as it is
-									} else {
-										fileContent2.append(line2);
-										fileContent2.append("\n");
-									}
-								}
-							}
-
-							FileWriter fstreamWrite2 = new FileWriter("src/Applications.txt");
-							BufferedWriter out2 = new BufferedWriter(fstreamWrite2);
-							out2.write(fileContent2.toString());
-							out2.close();
-
-						} catch (Exception ex) {
-							System.out.println("Problem reading file.");
-						}
+//						try {
+//							FileInputStream fstream2 = new FileInputStream("src/Applications.txt");
+//							BufferedReader br2 = new BufferedReader(new InputStreamReader(fstream2));
+//							String line2;
+//							StringBuilder fileContent2 = new StringBuilder();
+//
+//							while ((line2 = br2.readLine()) != null) {
+//								String sArray2[] = line2.split(", ");
+//								if (sArray2.length > 1) {
+//									// if line containing student is found, edit it
+//									if (sArray2[0].equals(username)) {
+//										String newLine2 = usernameField.getText() + ", " + sArray2[1] + ", "
+//												+ gpaField.getText();
+//										fileContent2.append(newLine2);
+//										fileContent2.append("\n");
+//										// otherwise keep it as it is
+//									} else {
+//										fileContent2.append(line2);
+//										fileContent2.append("\n");
+//									}
+//								}
+//							}
+//
+//							FileWriter fstreamWrite2 = new FileWriter("src/Applications.txt");
+//							BufferedWriter out2 = new BufferedWriter(fstreamWrite2);
+//							out2.write(fileContent2.toString());
+//							out2.close();
+//
+//						} catch (Exception ex) {
+//							System.out.println("Problem reading file.");
+//						}
 
 //					} catch (Exception ex) {
 //						System.out.println("Problem reading file.");
