@@ -21,6 +21,7 @@ import java.awt.Insets;
  * @author Rulan Lu, Matt Tamkee
  *
  */
+//small test to make sure it is working
 public class Main {
 
 	private JFrame frame;
