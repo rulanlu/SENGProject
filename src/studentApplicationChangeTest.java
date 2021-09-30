@@ -37,20 +37,21 @@ class studentApplicationChangeTest {
 			sEligible.changeEligibility(username, usernameContent, newGPA);
 			
 			//read file and check for changes
-			FileInputStream fstream2 = new FileInputStream("src/Applications.txt");
-			BufferedReader br2 = new BufferedReader(new InputStreamReader(fstream2));
-			String line2;
-			StringBuilder fileContent2 = new StringBuilder();
-
-			while ((line2 = br2.readLine()) != null) {
-				String sArray2[] = line2.split(", ");
-				if (sArray2.length > 1) {
-					// if line containing student is found, edit it
-					if (sArray2[0].equals(username)) {
-						resultArray = sArray2;
-					}
-				}
-			}
+//			FileInputStream fstream2 = new FileInputStream("src/Applications.txt");
+//			BufferedReader br2 = new BufferedReader(new InputStreamReader(fstream2));
+//			String line2;
+//			
+//			while ((line2 = br2.readLine()) != null) {
+//				String sArray2[] = line2.split(", ");
+//				if (sArray2.length > 1) {
+//					// if line containing student is found, edit it
+//					if (sArray2[0].equals(username)) {
+//						resultArray = sArray2;
+//					}
+//				}
+//			}
+			fileReader getStudent = new fileReader();
+			resultArray = getStudent.findStudent(username, "src/Applications.txt");
 			//compare the arrays 
 			Assert.assertArrayEquals(expectedArray, resultArray);
 		} catch (Exception e) {
