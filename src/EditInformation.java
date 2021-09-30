@@ -25,7 +25,7 @@ import javax.swing.JComboBox;
  * Allows student to edit their own information. 
  * This information is updated in the database as well.
  * 
- * @author Rulan Lu
+ * @author Rulan Lu, Matt Tamkee 
  *
  */
 public class EditInformation extends JFrame {
