@@ -42,20 +42,8 @@ class changeStudentInformationTest {
 			
 			student.changeInformation(username, usernameField, password, newGPA, newFaculty, Awarded);
 			//read file and check for changes 
-			FileInputStream fstream = new FileInputStream("src/student.txt");
-			BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
-			String line;
-			StringBuilder fileContent = new StringBuilder();
-
-			while ((line = br.readLine()) != null) {
-				String sArray[] = line.split(", ");
-				if (sArray.length > 1) {
-					// if line containing student is found, edit it
-					if (sArray[0].equals(username)) {
-						resultArray = sArray;
-					} 
-				}
-			}
+			fileReader getStudent = new fileReader();
+			resultArray = getStudent.findStudent(username, "src/student.txt");
 			//compare the arrays.
 			Assert.assertArrayEquals(expectedArray, resultArray);
 		}
