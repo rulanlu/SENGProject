@@ -119,13 +119,21 @@ public class RespondToApplication extends JFrame {
 			while (x.hasNextLine()) {
 				String y = x.nextLine();
 				String[] sArray = y.split(", ");
+//				if (sArray.length > 1) {
+//					if (scholarship.equals(sArray[1])) {
+//						if (username.equals(sArray[0])) {
+//							GPA = sArray[2];
+//							doubleGPA = Double.parseDouble(sArray[2]);
+//							studentSpot = i;
+//						}
+//					}
+//					i++;
+//				}
 				if (sArray.length > 1) {
-					if (scholarship.equals(sArray[1])) {
-						if (username.equals(sArray[0])) {
-							GPA = sArray[2];
-							doubleGPA = Double.parseDouble(sArray[2]);
-							studentSpot = i;
-						}
+					if (scholarship.equals(sArray[1]) && username.equals(sArray[0])) {
+						GPA = sArray[2];
+//						doubleGPA = Double.parseDouble(sArray[2]);
+//						studentSpot = i;
 					}
 					i++;
 				}
