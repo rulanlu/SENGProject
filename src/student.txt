@@ -1,6 +1,6 @@
 Student Name, Password, GPA, Faculty, Awarded
 Rulan, 1234, 3.80, Science, No
 Test, 1234, 3.70, Science, Yes
-Matt, 4321, 3.90, Education, No
+Matt, 4321, 3.20, Business, No
 Susanah, 4321, 3.90, Science, No
 MattTest, 4321, 3.20, Science, No

@@ -6,4 +6,4 @@ Rulan, Alexander Rutherford, 3.70
 Rulan, Continuing Students Award, 3.70
 Rulan, Governor General's Award, 3.70
 Rulan, President's Scholarship, 3.70
-MattTest, President's Scholarship, 3.90
+MattTest, President's Scholarship, 3.80
