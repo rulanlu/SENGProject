@@ -171,10 +171,6 @@ public class ScholarshipSystem extends JFrame {
 				} else if (!gpaChecker.isValidGpa(scholarshipGPA.getText())) {
 					JOptionPane.showMessageDialog(null, "Please enter a valid number for GPA (Between 0.00 and 4.30");
 				}
-//				else if ((Double.parseDouble(scholarshipGPA.getText()) > 4.30)
-//						|| (Double.parseDouble(scholarshipGPA.getText()) < 0.00)) {
-//					JOptionPane.showMessageDialog(null, "Please enter a valid number for GPA (Between 0.00 and 4.30");
-//				} 
 				else if (Integer.parseInt(scholarshipAmount.getText()) < 50) {
 					JOptionPane.showMessageDialog(null,
 							"Please enter a valid amount for the scholarship (Must be greater than $50)");
