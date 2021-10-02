@@ -125,10 +125,6 @@ public class EditInformation extends JFrame {
 				else if (!gpaChecker.isValidGpa(gpaField.getText())) {
 					JOptionPane.showMessageDialog(null, "Please enter a valid number for GPA (Between 0.00 and 4.30");
 				}
-//				else if ((Double.parseDouble(gpaField.getText()) > 4.30)
-//						|| (Double.parseDouble(gpaField.getText()) < 0.00)) {
-//					JOptionPane.showMessageDialog(null, "Please enter a valid number for GPA (Between 0.00 and 4.30");
-//				}
 				else {
 					// open the database and change the information for the student
 //					try {
