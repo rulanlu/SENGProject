@@ -158,20 +158,20 @@ public class ScholarshipSystem extends JFrame {
 		yesCheckBox.setText("Yes");
 		yesCheckBox.setBounds(493, 332, 85, 50);
 		contentPane.add(yesCheckBox);
-
 		// if coordinator hits add button
 		JButton updateTable = new JButton("Add");
 		updateTable.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				// checks to ensure that all fields are filled in correctly
+				validGpa gpaChecker = new validGpa();
 				if (scholarshipName.getText().contentEquals("") || scholarshipDate.getText().contentEquals("")
 						|| scholarshipGPA.getText().contentEquals("")
 						|| scholarshipAmount.getText().contentEquals("")) {
 					JOptionPane.showMessageDialog(null, "Please fill in all boxes.");
-				} else if ((Double.parseDouble(scholarshipGPA.getText()) > 4.30)
-						|| (Double.parseDouble(scholarshipGPA.getText()) < 0.00)) {
+				} else if (!gpaChecker.isValidGpa(scholarshipGPA.getText())) {
 					JOptionPane.showMessageDialog(null, "Please enter a valid number for GPA (Between 0.00 and 4.30");
-				} else if (Integer.parseInt(scholarshipAmount.getText()) < 50) {
+				}
+				else if (Integer.parseInt(scholarshipAmount.getText()) < 50) {
 					JOptionPane.showMessageDialog(null,
 							"Please enter a valid amount for the scholarship (Must be greater than $50)");
 				} else {

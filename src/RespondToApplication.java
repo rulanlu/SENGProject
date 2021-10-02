@@ -122,6 +122,8 @@ public class RespondToApplication extends JFrame {
 				if (sArray.length > 1) {
 					if (scholarship.equals(sArray[1]) && username.equals(sArray[0])) {
 						GPA = sArray[2];
+						doubleGPA = Double.parseDouble(sArray[2]);
+						studentSpot = i;
 					}
 					i++;
 				}
